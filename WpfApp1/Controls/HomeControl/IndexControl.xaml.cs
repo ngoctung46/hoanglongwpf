@@ -28,15 +28,16 @@ namespace WpfApp1.Controls.HomeControl
             InitializeComponent();
             ViewModel = new IndexControlViewModel();
             this.WhenActivated(d => BindView(d));
-            AddRooms();
         }
 
         private void BindView(Action<IDisposable> d)
         {
+            d(ViewModel.InitializeCommand.Execute().Subscribe(_ => AddRooms()));
         }
 
         private void AddRooms()
         {
+            if (ViewModel.Rooms == null || ViewModel.Rooms.Count == 0) return;
             foreach (var room in ViewModel.Rooms)
             {
                 var roomControl = new RoomControl(room);

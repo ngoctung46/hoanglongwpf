@@ -1,16 +1,50 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfApp1.Model.Base;
 
 namespace WpfApp1.Model
 {
-    public class Room
+    public class Room : ModelBase
     {
-        public int Id { get; set; }
-        public int Number { get; set; }
+        public enum RoomStatus
+        {
+            Occupied,
+            Available,
+            Dirty,
+            Clean,
+            Broken,
+            CustomerOut,
+            Booked
+        }
+
+        public enum RoomType
+        {
+            Single, Double
+        }
+
+        [JsonProperty("name")]
+        public int Name { get; set; }
+
+        [JsonProperty("description")]
         public string Description { get; set; }
-        public double Price { get; set; }
+
+        [JsonProperty("rate")]
+        public double Rate { get; set; }
+
+        [JsonProperty("status")]
+        public RoomStatus Status { get; set; }
+
+        [JsonProperty("type")]
+        public RoomType Type { get; set; }
+
+        [JsonProperty("customerId")]
+        public string CustomerId { get; set; }
+
+        [JsonProperty("orderId")]
+        public string OrderId { get; set; }
     }
 }

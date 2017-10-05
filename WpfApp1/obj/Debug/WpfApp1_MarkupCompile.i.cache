@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Tung\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\
+C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\
 WpfApp1
 none
 false
 DEBUG;TRACE
-C:\Users\Tung\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\App.xaml
+C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\App.xaml
 3236830434
 
-18976401812
-261878248979
+22-616307450
+271649336497
 Controls\HomeControl\IndexControl.xaml;Controls\HomeControl\RoomControl.xaml;MainWindow.xaml;
 
-True
+False
 

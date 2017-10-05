@@ -1,4 +1,5 @@
-﻿using ReactiveUI;
+﻿using MaterialDesignThemes.Wpf;
+using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,16 +19,7 @@ using WpfApp1.ViewModel.HomeControl;
 
 namespace WpfApp1.Controls.HomeControl
 {
-    internal enum RoomStatus
-    {
-        Occupied,
-        Available,
-        Dirty,
-        Clean,
-        Broken,
-        CustomerOut,
-        Booked
-    }
+    
 
     public partial class RoomControl : UserControl, IViewFor<RoomControlViewModel>
     {
@@ -42,16 +34,21 @@ namespace WpfApp1.Controls.HomeControl
 
         private void BindView(Action<IDisposable> d)
         {
-            d(this.BindCommand(ViewModel, vm => vm.SearchCustomerCommand, v => v.CustomerIdTextBox, "LostFocus"));
-            d(ViewModel.SearchCustomerCommand.Subscribe(IsSuccess => { if (IsSuccess) DisableAllControls(); }));
-        }
-
-        private void DisableAllControls()
-        {
-            CustomerIdTextBox.IsEnabled = false;
-            CustomerNameTextBox.IsEnabled = false;
-            BirthInfoStackPanel.IsEnabled = false;
-            AddressInfoStackPanel.IsEnabled = false;
+            d(this.BindCommand(ViewModel, vm => vm.SearchCustomerCommand, v => v.CustomerIdTextBox, nameof(CustomerIdTextBox.LostFocus)));
+            d(this.OneWayBind(ViewModel, vm => vm.IsOccupied, v => v.AvailableZone.Visibility,
+                IsOccupied => IsOccupied ? Visibility.Collapsed : Visibility.Visible));
+            d(this.OneWayBind(ViewModel, vm => vm.Status, v => v.StatusTextBlock.Foreground, status => status == Room.RoomStatus.Available ? Brushes.Green : Brushes.LightYellow));
+            d(this.OneWayBind(ViewModel, vm => vm.IsOccupied, v => v.OccupiedZone.Visibility,
+                IsOccupied => IsOccupied ? Visibility.Visible : Visibility.Collapsed));
+            d(this.OneWayBind(ViewModel, vm => vm.IsOccupied, v => v.RoomCard.Background, IsOccupied => IsOccupied ? Brushes.Red : Brushes.White));
+            d(this.OneWayBind(ViewModel, vm => vm.Status, v => v.RoomCard.Background, status => status == Room.RoomStatus.Dirty ? Brushes.Gray : Brushes.White));
+            d(this.OneWayBind(ViewModel, vm => vm.IsNewCustomer, v => v.CustomerIdTextBox.IsEnabled));
+            d(this.OneWayBind(ViewModel, vm => vm.IsNewCustomer, v => v.CustomerNameTextBox.IsEnabled));
+            d(this.OneWayBind(ViewModel, vm => vm.IsNewCustomer, v => v.BirthInfoStackPanel.IsEnabled));
+            d(this.OneWayBind(ViewModel, vm => vm.IsNewCustomer, v => v.IdentityInfoStackPanel.IsEnabled));
+            d(this.OneWayBind(ViewModel, vm => vm.IsNewCustomer, v => v.AddressInfoStackPanel.IsEnabled));
+            d(ViewModel.AcceptCommand.Subscribe(_ => CustomerDialogHost.IsOpen = false));
+            d(ViewModel.SearchCustomerCommand.Subscribe(_ => CustomerIdTextBox.IsEnabled = false));
         }
 
         public static DependencyProperty RoomProperty = DependencyProperty.Register("Room", typeof(Room), typeof(RoomControl));
