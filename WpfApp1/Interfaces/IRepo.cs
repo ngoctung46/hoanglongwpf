@@ -9,7 +9,7 @@ namespace WpfApp1.Interfaces
 {
     public interface IRepo<T> where T : ModelBase
     {
-        Task<bool> PostAsync(T entity);
+        Task<String> PostAsync(T entity);
 
         Task<bool> PutAsync(T entity);
 

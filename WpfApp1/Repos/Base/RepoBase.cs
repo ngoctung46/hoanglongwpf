@@ -14,13 +14,13 @@ namespace WpfApp1.Repos.Base
 {
     public abstract class RepoBase<T> : IRepo<T> where T : ModelBase, new()
     {
-        private HttpClient _httpClient;
-        private readonly string BASE_ADDRESS = @"http://localhost:3000/api/";
-        private string api;
+        private readonly HttpClient _httpClient;
+        private readonly string _baseAddress = @"http://localhost:3000/api/";
+        private readonly string _api;
 
         protected RepoBase()
         {
-            api = $"{BASE_ADDRESS}{typeof(T).Name.Trim().ToLower()}/";
+            _api = $"{_baseAddress}{typeof(T).Name.Trim().ToLower()}/";
             _httpClient = CreateHttpClient();
         }
 
@@ -31,42 +31,46 @@ namespace WpfApp1.Repos.Base
 
         public async Task<IEnumerable<T>> GetAsync()
         {
-            HttpResponseMessage res = await _httpClient.GetAsync(api);
-            if (res.IsSuccessStatusCode)
-            {
-                var resText = res.Content.ReadAsStringAsync().Result;
-                JObject jObject = JObject.Parse(resText);
-                var data = jObject["data"]?.ToString();
-                return JsonConvert.DeserializeObject<IEnumerable<T>>(data);
-            }
-            else
-            {
-                return default(IEnumerable<T>);
-            }
+            var res = await _httpClient.GetAsync(_api);
+            if (!res.IsSuccessStatusCode) return default(IEnumerable<T>);
+            var resText = res.Content.ReadAsStringAsync().Result;
+            var jObject = JObject.Parse(resText);
+            var data = jObject["data"]?.ToString();
+            return JsonConvert.DeserializeObject<IEnumerable<T>>(data);
         }
 
-        public Task<bool> PostAsync(T entity)
+        public async Task<String> PostAsync(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null) return String.Empty;
+            var postContent = CreateStringContent(entity);
+            var res = await _httpClient.PostAsync(_api, postContent);
+            if (!res.IsSuccessStatusCode) return String.Empty;
+            var restText = res.Content.ReadAsStringAsync().Result;
+            var jObject = JObject.Parse(restText);
+            var id = jObject["_id"]?.ToString();
+            return id;
         }
 
-        public Task<bool> PutAsync(T entity)
+        public async Task<bool> PutAsync(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null) return false;
+            var api = $"{_api}/{entity.Id}";
+            var updateContent = CreateStringContent(entity);
+            var res = await _httpClient.PutAsync(api, updateContent);
+            return res.IsSuccessStatusCode;
         }
 
         internal HttpClient CreateHttpClient()
         {
-            var httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(BASE_ADDRESS);
+            var httpClient = new HttpClient { BaseAddress = new Uri(_baseAddress) };
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             return httpClient;
         }
 
-        internal StringContent CreateStringContent()
+        internal StringContent CreateStringContent(object obj)
         {
-            var jObject = JsonConvert.SerializeObject(default(T), Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            var jObject = JsonConvert.SerializeObject(obj, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             return new StringContent(jObject, Encoding.UTF8, "application/json");
         }
     }

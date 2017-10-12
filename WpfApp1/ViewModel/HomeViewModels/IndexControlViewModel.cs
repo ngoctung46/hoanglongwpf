@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 using WpfApp1.Model;
 using WpfApp1.Repos;
 
-namespace WpfApp1.ViewModel.HomeControl
+namespace WpfApp1.ViewModel.HomeViewModels
 {
     public class IndexControlViewModel : ReactiveObject
     {
         public ReactiveList<Room> Rooms;
-        private RoomRepo _roomRepo;
+        private readonly RoomRepo _roomRepo;
 
         public ReactiveCommand<Unit, Unit> InitializeCommand { get; protected set; }
 
@@ -25,8 +25,8 @@ namespace WpfApp1.ViewModel.HomeControl
 
         private async void InitializeRooms()
         {
-            var room = await _roomRepo.GetAsync();
-            Rooms = new ReactiveList<Room>(room);
+            var rooms = await _roomRepo.All();
+            Rooms = new ReactiveList<Room>(rooms);
         }
     }
 }

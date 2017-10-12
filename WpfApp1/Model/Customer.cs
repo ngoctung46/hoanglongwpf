@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,18 +10,62 @@ namespace WpfApp1.Model
 {
     public class Customer : ModelBase
     {
-        public int Id { get; set; }
-        public string Uuid { get; set; }
-        public string Name { get; set; }
-        public DateTime BirthDate { get; set; } = DateTime.Now;
-        public string BirthPlace { get; set; }
-        public DateTime IssueDate { get; set; } = DateTime.Now;
-        public DateTime ExpiryDate { get; set; } = DateTime.Now;
-        public string IssuePlace { get; set; }
-        public Address Address { get; set; }
+        [JsonProperty("identity")]
+        public string Identity { get; set; }
 
-        public Customer()
-        {
-        }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("birthDate")]
+        public DateTime BirthDate { get; set; } = DateTime.Now;
+
+        [JsonProperty("brithPlace")]
+        public string BirthPlace { get; set; }
+
+        [JsonProperty("issueDate")]
+        public DateTime IssueDate { get; set; } = DateTime.Now;
+
+        [JsonProperty("expiryDate")]
+        public DateTime ExpiryDate { get; set; } = DateTime.Now;
+
+        [JsonProperty("issuePlace")]
+        public string IssuePlace { get; set; }
+
+        [JsonProperty("addressLine1")]
+        public string AddressLine1 { get; set; }
+
+        [JsonProperty("addressLine2")]
+        public string AddressLine2 { get; set; }
+
+        [JsonProperty("city")]
+        public string City { get; set; }
+
+        [JsonProperty("country")]
+        public string Country { get; set; }
+
+        [JsonProperty("checkInDate")]
+        public DateTime CheckInDate { get; set; } = DateTime.Now;
+
+        [JsonProperty("checkOutDate")]
+        public DateTime? CheckOutDate { get; set; }
+
+        [JsonProperty("orderId")]
+        public string OrderId { get; set; }
+
+        public string AddressDisplay
+            => $"Line 1 : {AddressLine1}{Environment.NewLine}" +
+               $"Line 2 :{AddressLine2}{Environment.NewLine}" +
+               $"City 2 :{City}{Environment.NewLine}" +
+               $"Country:{Country}";
+
+        public string IdentityDisplay
+            => $"{Identity}{Environment.NewLine}" +
+               $"Issue Date : {IssueDate:dd/MM/yyyy}{Environment.NewLine}" +
+               $"Expiry Date: {ExpiryDate:dd/MM/yyyy}{Environment.NewLine}" +
+               $"Issue Place: {IssuePlace}";
+
+        public string CheckInDateDisplay => $"{CheckInDate:dd/MM/yyyy HH:mm:ss}";
+
+        public string CheckOutDateDisplay => $"{CheckOutDate:dd/MM/yyyy HH:mm:ss}";
     }
 }

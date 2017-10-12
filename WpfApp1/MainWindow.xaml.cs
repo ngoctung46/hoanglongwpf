@@ -25,5 +25,8 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
+
+        public void PrintTest()
+            => Console.WriteLine(@"Method from Main Window");
     }
 }

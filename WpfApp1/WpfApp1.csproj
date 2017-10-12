@@ -15,7 +15,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>C:\Users\Tung\LocalFtp\</PublishUrl>
+    <PublishUrl>C:\Users\Tung\Install\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -25,7 +25,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -63,6 +63,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>WpfApp1.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Dragablz, Version=0.0.3.197, Culture=neutral, processorArchitecture=MSIL">
@@ -127,21 +130,68 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\CustomerControls\CustomerControl.xaml.cs">
+      <DependentUpon>CustomerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomerControls\CustomerInfoControl.xaml.cs">
+      <DependentUpon>CustomerInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HomeControls\ChangeRoomControl.xaml.cs">
+      <DependentUpon>ChangeRoomControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OrderControls\OrderControl.xaml.cs">
+      <DependentUpon>OrderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ServiceControls\ServiceControl.xaml.cs">
+      <DependentUpon>ServiceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\Utility.cs" />
     <Compile Include="Interfaces\IRepo.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Base\ModelBase.cs" />
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\Orderline.cs" />
+    <Compile Include="Model\Service.cs" />
     <Compile Include="Repos\Base\RepoBase.cs" />
+    <Compile Include="Repos\CustomerRepo.cs" />
+    <Compile Include="Repos\OrderlineRepo.cs" />
+    <Compile Include="Repos\OrderRepo.cs" />
     <Compile Include="Repos\RoomRepo.cs" />
+    <Compile Include="Repos\ServiceRepo.cs" />
     <Compile Include="Validations\FutureDateValidationRule.cs" />
     <Compile Include="Validations\NotEmptyValidationRule.cs" />
-    <Compile Include="ViewModel\HomeControl\IndexControlViewModel.cs" />
-    <Compile Include="ViewModel\HomeControl\RoomControlViewModel.cs" />
-    <Page Include="Controls\HomeControl\IndexControl.xaml">
+    <Compile Include="ViewModel\CustomerViewModels\CustomerControlViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModels\ChangeRoomControlViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModels\IndexControlViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModels\RoomControlViewModel.cs" />
+    <Compile Include="ViewModel\OrderViewModels\OrderControlViewModel.cs" />
+    <Compile Include="ViewModel\ServiceControlViewModels\ServiceControlViewModel.cs" />
+    <Page Include="Controls\CustomerControls\CustomerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\HomeControl\RoomControl.xaml">
+    <Page Include="Controls\CustomerControls\CustomerInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\HomeControls\ChangeRoomControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\HomeControls\IndexControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\HomeControls\RoomControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OrderControls\OrderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ServiceControls\ServiceControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,10 +203,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\HomeControl\IndexControl.xaml.cs">
+    <Compile Include="Controls\HomeControls\IndexControl.xaml.cs">
       <DependentUpon>IndexControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\HomeControl\RoomControl.xaml.cs">
+    <Compile Include="Controls\HomeControls\RoomControl.xaml.cs">
       <DependentUpon>RoomControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
@@ -204,6 +254,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
