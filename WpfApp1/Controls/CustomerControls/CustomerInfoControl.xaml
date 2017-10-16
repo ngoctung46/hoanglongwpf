@@ -14,69 +14,94 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="300" d:DesignWidth="550">
-    <Grid Margin="10">
+    <Grid Margin="10" x:Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Margin="8 24 8 4">
-            <TextBlock Style="{StaticResource MaterialDesignDisplay2TextBlock}" Margin="0" Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Grid>
+        <Grid x:Name="PrintGrid" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Margin="8 24 8 4">
+                <TextBlock FontWeight="Bold" FontSize="25" Margin="5" Text="{Binding RoomName}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Right" />
+                    <Label Grid.Column="1" Content="{Binding Name}"></Label>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="ID Number:" HorizontalAlignment="Right" />
+                    <Label Grid.Column="1" Content="{Binding IdentityDisplay}"></Label>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Birth Date:" HorizontalAlignment="Right" />
+                    <Label Grid.Column="1" Content="{Binding BirthDateDisplay}"></Label>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Birth Place:" HorizontalAlignment="Right" />
+                    <Label Grid.Column="1" Content="{Binding BirthPlace}"></Label>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Address:" HorizontalAlignment="Right" />
+                    <Label Grid.Column="1" Content="{Binding AddressDisplay}"></Label>
+                </Grid>
+            </StackPanel>
+            <Separator Grid.Row="2" Style="{StaticResource MaterialDesignDarkSeparator}" Margin="8 0 8 0" />
+            <TextBlock Grid.Row="3" Margin="8 4 8 4" Style="{StaticResource MaterialDesignBody2TextBlock}">Checking Info</TextBlock>
+            <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="ID Number:" HorizontalAlignment="Right" />
-                <Label Grid.Column="1" Content="{Binding IdentityDisplay}"></Label>
+                <materialDesign:PackIcon Grid.Column="1" Kind="Clock" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="0" Text="Check In At:" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding CheckInDateDisplay}" />
             </Grid>
-            <Grid>
+            <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Right" />
-                <Label Grid.Column="1" Content="{Binding Name}"></Label>
+                <materialDesign:PackIcon Grid.Column="1" Kind="Clock" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="0" Text="Check Out At:" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding CheckOutDateDisplay}" />
             </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Address:" HorizontalAlignment="Right" />
-                <Label Grid.Column="1" Content="{Binding AddressDisplay}"></Label>
-            </Grid>
-        </StackPanel>
-        <Separator Grid.Row="2" Style="{StaticResource MaterialDesignDarkSeparator}" Margin="8 0 8 0" />
-        <TextBlock Grid.Row="3" Margin="8 4 8 4" Style="{StaticResource MaterialDesignBody2TextBlock}">Checking Info</TextBlock>
-        <Grid Grid.Row="4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <materialDesign:PackIcon Grid.Column="1" Kind="Clock" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBlock Grid.Column="0" Text="Check In At:" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding CheckInDateDisplay}" />
         </Grid>
-        <Grid Grid.Row="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="3*" />
-            </Grid.ColumnDefinitions>
-            <materialDesign:PackIcon Grid.Column="1" Kind="Clock" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBlock Grid.Column="0" Text="Check Out At:" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding CheckOutDateDisplay}" />
-        </Grid>
-
-        <StackPanel Grid.Row="6">
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
                     Margin="10"
-                    HorizontalAlignment="Center"
+                    Content="Print"
+                    Click="Print_Click" />
+            <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Margin="10"
                     Content="Close"
                     Click="ButtonBase_OnClick" />
         </StackPanel>

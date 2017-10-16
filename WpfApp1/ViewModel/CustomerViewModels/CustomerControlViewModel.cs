@@ -22,6 +22,7 @@ namespace WpfApp1.ViewModel.CustomerViewModels
         private readonly RoomRepo _roomRepo;
         private readonly OrderRepo _orderRepo;
         private readonly OrderlineRepo _orderLineRepo;
+        private readonly ServiceRepo _serviceRepo;
         private readonly Room _room;
         private readonly RoomControlViewModel _roomControlViewModel;
         private DateTime _checkInTime = DateTime.Now;
@@ -70,6 +71,7 @@ namespace WpfApp1.ViewModel.CustomerViewModels
             _roomRepo = new RoomRepo();
             _orderRepo = new OrderRepo();
             _orderLineRepo = new OrderlineRepo();
+            _serviceRepo = new ServiceRepo();
             Customers = _customerRepo.GetAll().ToList();
             AcceptCommand = ReactiveCommand.Create(Accept);
             SearchCustomerCommand = ReactiveCommand.Create(SearchCustomer);
@@ -97,16 +99,17 @@ namespace WpfApp1.ViewModel.CustomerViewModels
         private async Task<bool> Accept()
         {
             if (Customer.Id == null) Customer.Id = await _customerRepo.Add(Customer);
+            else await _customerRepo.Update(Customer);
             _room.Status = Room.RoomStatus.Occupied;
             _room.CustomerId = Customer.Id;
             _roomControlViewModel.Status = Room.RoomStatus.Occupied;
             _roomControlViewModel.Customer = Customer;
             _roomControlViewModel.Room.CustomerId = Customer.Id;
-            var newOrder = Utility.CreateNewOrder(Customer.Id, _room.Id);
+            var newOrder = Utility.CreateNewOrder(Customer.Id, _room.Id, Customer.CheckInDate);
             var orderId = await _orderRepo.Add(newOrder);
-            //var serviceId = GetServiceIdByRoomType(_room.Type);
-            //var newOrderLine = Utility.CreateNewOrderline(serviceId, orderId, 1);
-            //await _orderLineRepo.Add(newOrderLine);
+            // var service = _serviceRepo.GetRoomRateService();
+            // var newOrderLine = Utility.CreateNewOrderline(service.Id, orderId, 1);
+            // await _orderLineRepo.Add(newOrderLine);
             _room.OrderId = orderId;
             return await _roomRepo.Update(_room);
         }

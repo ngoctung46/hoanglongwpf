@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.Helper;
 using WpfApp1.Model;
 
 namespace WpfApp1.Controls.CustomerControls
@@ -28,7 +29,8 @@ namespace WpfApp1.Controls.CustomerControls
             DataContext = customer;
         }
 
-        public static DependencyProperty DialogHostProperty = DependencyProperty.Register("DialogHost", typeof(DialogHost), typeof(CustomerInfoControl));
+        public static DependencyProperty DialogHostProperty =
+            DependencyProperty.Register("DialogHost", typeof(DialogHost), typeof(CustomerInfoControl));
 
         public DialogHost DialogHost
         {
@@ -38,6 +40,12 @@ namespace WpfApp1.Controls.CustomerControls
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
+            DialogHost.IsOpen = false;
+        }
+
+        private void Print_Click(object sender, RoutedEventArgs e)
+        {
+            Utility.Print(PrintGrid, "Customer Info");
             DialogHost.IsOpen = false;
         }
     }

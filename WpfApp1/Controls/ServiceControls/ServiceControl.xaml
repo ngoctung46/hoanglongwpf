@@ -20,6 +20,7 @@
             x:Name="NameComboBox"
             materialDesign:HintAssist.Hint="Name"
             IsEditable="True"
+            Text="{Binding ServiceName}"
             SelectedValue="{Binding Service}"
             DisplayMemberPath="Name" />
         <TextBox HorizontalAlignment="Stretch"

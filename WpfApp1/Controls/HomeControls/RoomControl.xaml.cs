@@ -24,8 +24,6 @@ namespace WpfApp1.Controls.HomeControls
 {
     public partial class RoomControl : UserControl, IViewFor<RoomControlViewModel>
     {
-        private string MoveRoomId;
-
         public RoomControl(Room room)
         {
             InitializeComponent();
@@ -52,6 +50,7 @@ namespace WpfApp1.Controls.HomeControls
             d(ViewModel.ShowCustomerInfoCommand.Subscribe(customer =>
             {
                 if (customer == null) return;
+                customer.RoomName = Room.Name;
                 DialogContentPanel.Children.Clear();
                 var control = new CustomerInfoControl(customer) { Height = Double.NaN, Width = 500, DialogHost = CustomerDialogHost };
                 DialogContentPanel.Children.Add(control);
@@ -60,7 +59,7 @@ namespace WpfApp1.Controls.HomeControls
             d(ViewModel.ViewReceiptCommand.Subscribe(_ =>
             {
                 DialogContentPanel.Children.Clear();
-                var control = new OrderControl(Room) { DialogHost = CustomerDialogHost };
+                var control = new OrderControl(Room) { DialogHost = CustomerDialogHost, Owner = this };
                 DialogContentPanel.Children.Add(control);
                 CustomerDialogHost.IsOpen = true;
             }));

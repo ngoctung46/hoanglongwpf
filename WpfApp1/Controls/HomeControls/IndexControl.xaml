@@ -7,5 +7,5 @@
              mc:Ignorable="d"
              Margin="10"
              d:DesignHeight="768" d:DesignWidth="1024" SizeChanged="UserControl_SizeChanged">
-    <WrapPanel x:Name="RootWrapPanel"  FlowDirection="LeftToRight" ItemHeight="Auto" />
+    <WrapPanel x:Name="RootWrapPanel"  FlowDirection="LeftToRight" ItemHeight="Auto" Height="Auto" />
 </UserControl>

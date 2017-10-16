@@ -37,11 +37,11 @@ namespace WpfApp1.ViewModel.HomeViewModels
             var rooms = _roomRepo.AvailableRooms;
             Rooms = new ReactiveList<Room>(rooms);
             Room = Rooms[0];
-            AcceptCommand = ReactiveCommand.Create(Accept);
+            AcceptCommand = ReactiveCommand.CreateFromTask(Accept);
             CancelCommand = ReactiveCommand.Create(Cancel);
         }
 
-        private async void Accept()
+        private async Task Accept()
         {
             Room.OrderId = _oldRoom.OrderId;
             Room.CustomerId = _oldRoom.CustomerId;

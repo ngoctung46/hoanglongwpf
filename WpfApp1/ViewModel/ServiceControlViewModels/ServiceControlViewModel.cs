@@ -20,7 +20,7 @@ namespace WpfApp1.ViewModel.ServiceControlViewModels
         private double _price, _quantity = 1;
         private readonly ObservableAsPropertyHelper<double> _total;
         private Service _service = new Service();
-        private string _orderId;
+        private readonly string _orderId;
 
         public ReactiveCommand<Unit, Unit> AddCommand { get; protected set; }
         public ReactiveCommand<Unit, Unit> CloseCommand { get; protected set; }
@@ -29,6 +29,14 @@ namespace WpfApp1.ViewModel.ServiceControlViewModels
         {
             get => _service;
             set => this.RaiseAndSetIfChanged(ref _service, value);
+        }
+
+        private string _serviceName;
+
+        public string ServiceName
+        {
+            get => _serviceName;
+            set => this.RaiseAndSetIfChanged(ref _serviceName, value);
         }
 
         public double Price
@@ -66,7 +74,13 @@ namespace WpfApp1.ViewModel.ServiceControlViewModels
 
         private async Task AddAsync()
         {
-            var orderLine = Utility.CreateNewOrderline(Service.Id, _orderId, Quantity);
+            if (Service == null)
+            {
+                var service = new Service() { Name = ServiceName, CurrentPrice = Price, CostPrice = Price };
+                service.Id = await _serviceRepo.Add(service);
+                Service = service;
+            }
+            var orderLine = Utility.CreateNewOrderline(Service.Id, _orderId, Quantity, Price, Service.Name);
             await _orderlineRepo.Add(orderLine);
         }
 

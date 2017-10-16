@@ -27,7 +27,7 @@ namespace WpfApp1.Model
         }
 
         [JsonProperty("name")]
-        public int Name { get; set; }
+        public string Name { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }

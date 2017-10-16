@@ -15,14 +15,14 @@ namespace WpfApp1.Helper
     {
         private static readonly Action EmptyDelegate = delegate () { };
 
-        public static Order CreateNewOrder(string customerId, string roomId)
+        public static Order CreateNewOrder(string customerId, string roomId, DateTime checkInDate)
         {
-            return new Order() { CustomerId = customerId, RoomId = roomId };
+            return new Order() { CustomerId = customerId, RoomId = roomId, CheckInTime = checkInDate };
         }
 
-        public static Orderline CreateNewOrderline(string serviceId, string orderId, double quantity)
+        public static Orderline CreateNewOrderline(string serviceId, string orderId, double quantity, double price, string serviceName)
         {
-            return new Orderline() { ServiceId = serviceId, Quantity = quantity, OrderId = orderId };
+            return new Orderline() { ServiceId = serviceId, ServiceName = serviceName, Quantity = quantity, OrderId = orderId, Price = price, Total = price * quantity };
         }
 
         public static void UpdateList<T>(ref List<T> list, T item) where T : ModelBase, new()
@@ -42,11 +42,24 @@ namespace WpfApp1.Helper
         {
             DependencyObject ucParent = control.Parent;
 
-            while (!(ucParent is UserControl))
+            while (ucParent != null && !(ucParent is UserControl))
             {
                 ucParent = LogicalTreeHelper.GetParent(ucParent);
             }
-            return ucParent as UserControl;
+
+            return (UserControl)ucParent;
+        }
+
+        public static void Print(UIElement control, string title)
+        {
+            PrintDialog dialog = new PrintDialog();
+
+            if (dialog.ShowDialog() != true) return;
+
+            control.Measure(new Size(dialog.PrintableAreaWidth, dialog.PrintableAreaHeight));
+            control.Arrange(new Rect(new Point(20, 20),
+                new Size(control.DesiredSize.Width + 50, control.DesiredSize.Height + 200)));
+            dialog.PrintVisual(control, title);
         }
     }
 }

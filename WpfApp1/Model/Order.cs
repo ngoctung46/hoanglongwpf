@@ -19,7 +19,31 @@ namespace WpfApp1.Model
         [JsonProperty("roomId")]
         public string RoomId { get; set; }
 
-        [JsonIgnore]
+        [JsonProperty("checkInTime")]
+        public DateTime CheckInTime { get; set; }
+
+        [JsonProperty("checkOutTime")]
+        public DateTime CheckOutTime { get; set; }
+
+        [JsonProperty("discount")]
+        public double Discount { get; set; }
+
+        [JsonProperty("adjustment")]
+        public double Adjustment { get; set; }
+
+        [JsonProperty("total")]
         public double Total { get; set; }
+
+        [JsonIgnore]
+        public List<Orderline> OrderLines { get; set; }
+
+        [JsonIgnore]
+        public Room Room { get; set; }
+
+        public Order()
+        {
+            Room = new Room();
+            OrderLines = new List<Orderline>();
+        }
     }
 }

@@ -16,6 +16,7 @@ using MaterialDesignThemes.Wpf;
 using ReactiveUI;
 using WpfApp1.Controls.CustomerControls;
 using WpfApp1.Controls.HomeControls;
+using WpfApp1.Helper;
 using WpfApp1.Model;
 using WpfApp1.ViewModel.OrderViewModels;
 
@@ -38,12 +39,19 @@ namespace WpfApp1.Controls.OrderControls
         private void BindView(Action<IDisposable> d)
         {
             d(ViewModel.CloseCommand.Subscribe(_ => DialogHost.IsOpen = false));
-            d(ViewModel.CheckOutCommand.Subscribe(_ => DialogHost.IsOpen = false));
+            d(ViewModel.CheckOutCommand.Subscribe(_ =>
+            {
+                if (Owner is RoomControl roomControl)
+                    roomControl.ViewModel.CheckOutCommand.Execute().Subscribe();
+                DialogHost.IsOpen = false;
+            }));
         }
 
         public static DependencyProperty RoomProperty = DependencyProperty.Register("Room", typeof(Room), typeof(OrderControl));
 
         public static DependencyProperty DialogHostProperty = DependencyProperty.Register("DialogHost", typeof(DialogHost), typeof(OrderControl));
+
+        public static DependencyProperty OwnerProperty = DependencyProperty.Register("Owner", typeof(UserControl), typeof(OrderControl));
 
         public DialogHost DialogHost
         {
@@ -55,6 +63,12 @@ namespace WpfApp1.Controls.OrderControls
         {
             get => (Room)GetValue(RoomProperty);
             set => SetValue(RoomProperty, value);
+        }
+
+        public UserControl Owner
+        {
+            get => (UserControl)GetValue(OwnerProperty);
+            set => SetValue(OwnerProperty, value);
         }
 
         object IViewFor.ViewModel
@@ -71,5 +85,11 @@ namespace WpfApp1.Controls.OrderControls
 
         public static readonly DependencyProperty ViewModelProperty =
             DependencyProperty.Register("ViewModel", typeof(OrderControlViewModel), typeof(OrderControl));
+
+        private void Print_Click(object sender, RoutedEventArgs e)
+        {
+            Utility.Print(PrintStackPanel, "Receipt");
+            DialogHost.IsOpen = false;
+        }
     }
 }

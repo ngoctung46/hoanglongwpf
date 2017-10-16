@@ -24,12 +24,12 @@ namespace WpfApp1.Controls.HomeControls
 
         public void BindView(Action<IDisposable> d)
         {
-            d(ViewModel.InitializeCommand.Execute().Subscribe(_ => AddRooms()));
+            d(ViewModel.InitializeCommand.Execute().Subscribe(AddRooms));
         }
 
-        public void AddRooms()
+        public void AddRooms(bool shouldInitialize)
         {
-            if (ViewModel.Rooms == null || ViewModel.Rooms.Count == 0) return;
+            if (!shouldInitialize || ViewModel.Rooms == null || ViewModel.Rooms.Count == 0) return;
             foreach (var room in ViewModel.Rooms)
             {
                 if (RootWrapPanel.FindName($"Room{room.Name}") is RoomControl roomControl)

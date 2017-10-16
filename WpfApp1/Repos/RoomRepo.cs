@@ -44,5 +44,8 @@ namespace WpfApp1.Repos
 
         public List<Room> AvailableRooms
             => _rooms.Where(x => x.Status == Room.RoomStatus.Available).ToList();
+
+        public Room GetById(string id)
+            => _rooms.FirstOrDefault(x => x.Id == id);
     }
 }

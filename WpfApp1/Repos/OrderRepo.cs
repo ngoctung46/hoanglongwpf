@@ -56,5 +56,7 @@ namespace WpfApp1.Repos
 
         public Order FindOneById(string orderId)
             => _orders.FirstOrDefault(x => x.Id == orderId);
+
+        public IEnumerable<Order> GetAll() => _orders;
     }
 }

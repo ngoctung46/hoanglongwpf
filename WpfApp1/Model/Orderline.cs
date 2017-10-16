@@ -11,8 +11,6 @@ namespace WpfApp1.Model
 {
     public class Orderline : ModelBase
     {
-        private readonly ServiceRepo _serviceRepo;
-
         [JsonProperty("serviceId")]
         public string ServiceId { get; set; }
 
@@ -22,7 +20,13 @@ namespace WpfApp1.Model
         [JsonProperty("quantity")]
         public double Quantity { get; set; }
 
-        [JsonIgnore]
+        [JsonProperty("price")]
+        public double Price { get; set; }
+
+        [JsonProperty("serviceName")]
+        public string ServiceName { get; set; }
+
+        [JsonProperty("total")]
         public double Total { get; set; }
 
         [JsonIgnore]

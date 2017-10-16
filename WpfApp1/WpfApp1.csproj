@@ -25,7 +25,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -139,8 +139,14 @@
     <Compile Include="Controls\HomeControls\ChangeRoomControl.xaml.cs">
       <DependentUpon>ChangeRoomControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\HomeControls\MainWindowControl.xaml.cs">
+      <DependentUpon>MainWindowControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\OrderControls\OrderControl.xaml.cs">
       <DependentUpon>OrderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ReportControls\ReportIndexControl.xaml.cs">
+      <DependentUpon>ReportIndexControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ServiceControls\ServiceControl.xaml.cs">
       <DependentUpon>ServiceControl.xaml</DependentUpon>
@@ -150,6 +156,7 @@
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Base\ModelBase.cs" />
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\MenuItem.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Orderline.cs" />
     <Compile Include="Model\Service.cs" />
@@ -164,8 +171,11 @@
     <Compile Include="ViewModel\CustomerViewModels\CustomerControlViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModels\ChangeRoomControlViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModels\IndexControlViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModels\MainWindowControlViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModels\RoomControlViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowControlViewModel.cs" />
     <Compile Include="ViewModel\OrderViewModels\OrderControlViewModel.cs" />
+    <Compile Include="ViewModel\ReportViewModels\ReportIndexControlViewModel.cs" />
     <Compile Include="ViewModel\ServiceControlViewModels\ServiceControlViewModel.cs" />
     <Page Include="Controls\CustomerControls\CustomerControl.xaml">
       <SubType>Designer</SubType>
@@ -183,11 +193,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\HomeControls\MainWindowControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\HomeControls\RoomControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\OrderControls\OrderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ReportControls\ReportIndexControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

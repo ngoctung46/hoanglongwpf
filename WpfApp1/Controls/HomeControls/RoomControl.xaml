@@ -70,21 +70,15 @@
                             </Button>
                             <Button Style="{StaticResource MaterialDesignToolButton}"
                                     Width="30" Padding="2 0 2 0"
-                                    Command="{Binding ViewReceiptCommand}"
-                                    materialDesign:RippleAssist.IsCentered="True">
-                                <materialDesign:PackIcon Kind="Cash" />
-                            </Button>
-                            <Button Style="{StaticResource MaterialDesignToolButton}"
-                                    Width="30" Padding="2 0 2 0"
                                     Command="{Binding ShowCustomerInfoCommand}"
                                     materialDesign:RippleAssist.IsCentered="True">
                                 <materialDesign:PackIcon Kind="Account" />
                             </Button>
                             <Button Style="{StaticResource MaterialDesignToolButton}"
                                     Width="30" Padding="2 0 2 0"
-                                    Command="{Binding CheckOutCommand}"
+                                    Command="{Binding ViewReceiptCommand}"
                                     materialDesign:RippleAssist.IsCentered="True">
-                                <materialDesign:PackIcon Kind="LogoutVariant" />
+                                <materialDesign:PackIcon Kind="Cash" />
                             </Button>
                             <materialDesign:PopupBox Style="{StaticResource MaterialDesignToolPopupBox}" Padding="2 0 2 0">
                                 <StackPanel>

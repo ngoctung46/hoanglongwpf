@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using ReactiveUI;
+using WpfApp1.Model;
 
 namespace WpfApp1
 {
@@ -13,5 +15,6 @@ namespace WpfApp1
     /// </summary>
     public partial class App : Application
     {
+        public ReactiveList<Room> Rooms { get; set; }
     }
 }

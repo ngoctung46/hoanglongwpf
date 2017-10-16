@@ -17,6 +17,34 @@ namespace WpfApp1.ViewModel.OrderViewModels
         private readonly ServiceRepo _serviceRepo;
         private readonly OrderlineRepo _orderlineRepo;
         private readonly CustomerRepo _customerRepo;
+        private readonly OrderRepo _orderRepo;
+        private readonly ObservableAsPropertyHelper<double> _total;
+        public double Total => _total.Value;
+
+        private double _discount;
+
+        public double Discount
+        {
+            get => _discount;
+            set => this.RaiseAndSetIfChanged(ref _discount, value);
+        }
+
+        private double _adjustment;
+
+        public double Adjustment
+        {
+            get => _adjustment;
+            set => this.RaiseAndSetIfChanged(ref _adjustment, value);
+        }
+
+        private double _subTotal;
+
+        public double Subtotal
+        {
+            get => _subTotal;
+            set => this.RaiseAndSetIfChanged(ref _subTotal, value);
+        }
+
         public ReactiveList<Orderline> Orderlines { get; set; }
         public ReactiveCommand<Unit, Unit> CloseCommand { get; protected set; }
         public ReactiveCommand<Unit, Unit> CheckOutCommand { get; protected set; }
@@ -26,52 +54,47 @@ namespace WpfApp1.ViewModel.OrderViewModels
             _serviceRepo = new ServiceRepo();
             _orderlineRepo = new OrderlineRepo();
             _customerRepo = new CustomerRepo();
+            _orderRepo = new OrderRepo();
             _room = room;
             Orderlines = new ReactiveList<Orderline>();
             GetOrderInfo();
             CloseCommand = ReactiveCommand.Create(Close);
             CheckOutCommand = ReactiveCommand.CreateFromTask(CheckOut);
+            _total = this.WhenAnyValue(x => x.Adjustment, y => y.Discount, z => z.Subtotal,
+                (adjustment, discount, subTotal) => subTotal + adjustment - discount).ToProperty(this, x => x.Total);
         }
 
         private void GetOrderInfo()
         {
-            var checkInTime = _customerRepo.FindById(_room.CustomerId).CheckInDate;
-            checkInTime = new DateTime(checkInTime.Year, checkInTime.Month, checkInTime.Day, 9, 15, 00);
+            var checkInTime = _orderRepo.FindOneById(_room.OrderId).CheckInTime.ToLocalTime();
             var fee = CalculateFee(checkInTime);
             if (_room == null) return;
             var orderlines = _orderlineRepo.FindByOrderId(_room?.OrderId);
-            var orderTotal = 0.0;
-            var orderQuantity = 0.0;
+            Subtotal = 0.0;
             var roomService = _serviceRepo.GetRoomRateService();
             if (roomService == null) return;
             roomService.CurrentPrice = _room.Rate;
-            Orderlines.Add(new Orderline()
+            if (fee > 0)
             {
-                ServiceId = roomService.Id,
-                Service = roomService,
-                OrderId = _room.OrderId,
-                Quantity = (int)fee / _room.Rate,
-                Total = fee
-            });
-            orderTotal += fee;
-            foreach (var orderline in orderlines)
-            {
-                var service = _serviceRepo.FindById(orderline?.ServiceId);
-                if (orderline == null || service == null) continue;
-                var ol = new Orderline
+                if (fee < 300_000) roomService.CurrentPrice = fee;
+                var quantity = (int)fee / _room.Rate;
+                quantity = quantity >= 1 ? quantity : 1;
+                Orderlines.Add(new Orderline()
                 {
-                    ServiceId = orderline.ServiceId,
-                    Service = service,
-                    OrderId = orderline.OrderId,
-                    Quantity = orderline.Quantity,
-                    Total = orderline.Quantity * service.CurrentPrice
-                };
-                Orderlines.Add(ol);
-                orderTotal += ol.Total;
-                orderQuantity += ol.Quantity;
+                    ServiceId = roomService.Id,
+                    Service = roomService,
+                    ServiceName = roomService.Name,
+                    OrderId = _room.OrderId,
+                    Quantity = quantity,
+                    Price = fee,
+                    Total = fee
+                });
             }
+            Orderlines.AddRange(orderlines);
+            Subtotal = Orderlines.Sum(x => x.Total);
+            var orderQuantity = Orderlines.Sum(x => x.Quantity);
 
-            Orderlines.Add(new Orderline() { Service = new Service { Name = "TOTAL" }, Total = orderTotal, Quantity = orderQuantity });
+            Orderlines.Add(new Orderline() { ServiceName = "SubTotal", Total = Subtotal, Quantity = orderQuantity });
         }
 
         private void Close()
@@ -80,15 +103,24 @@ namespace WpfApp1.ViewModel.OrderViewModels
 
         private async Task CheckOut()
         {
+            var order = new Order
+            {
+                Id = _room?.OrderId,
+                Total = Total,
+                CheckOutTime = DateTime.Now,
+                Discount = Discount,
+                Adjustment = Adjustment,
+                RoomId = _room?.Id
+            };
+            await _orderRepo.Update(order);
             await _orderlineRepo.Add(Orderlines[0]);
         }
 
         private double CalculateFee(DateTime checkInTime)
         {
             var checkOutTime = DateTime.Now;
-            checkOutTime = new DateTime(checkOutTime.Year, checkOutTime.Month, checkOutTime.Day, 14, 30, 0);
-            var stayedTime = checkOutTime.Subtract(checkInTime).TotalHours;
-            if (stayedTime > 0 && stayedTime < 4) return CalculateHourlyFee(stayedTime);
+            var stayedTime = Math.Round(checkOutTime.Subtract(checkInTime).TotalHours, 2);
+            if (stayedTime >= 0 && stayedTime < 4) return CalculateHourlyFee(stayedTime);
             return CalculateDailyFee(checkInTime);
         }
 
@@ -97,7 +129,7 @@ namespace WpfApp1.ViewModel.OrderViewModels
             if (stayedTime > 3.2) return _room.Type == Room.RoomType.Single ? 210_000 : 250_000;
             if (stayedTime > 2.2) return _room.Type == Room.RoomType.Single ? 190_000 : 240_000;
             if (stayedTime > 1.2) return _room.Type == Room.RoomType.Single ? 150_000 : 190_000;
-            if (stayedTime > 0.2) return _room.Type == Room.RoomType.Single ? 100_000 : 150_000;
+            if (stayedTime >= 0) return _room.Type == Room.RoomType.Single ? 100_000 : 150_000;
             return 0.0;
         }
 
@@ -108,7 +140,6 @@ namespace WpfApp1.ViewModel.OrderViewModels
                 new DateTime(checkInTime.Year, checkInTime.Month, checkInTime.Day - 1, 12, 0, 0) :
                 new DateTime(checkInTime.Year, checkInTime.Month, checkInTime.Day, 12, 0, 0);
             var checkOutTime = DateTime.Now;
-            checkOutTime = new DateTime(checkOutTime.Year, checkOutTime.Month, checkOutTime.Day, 14, 30, 0);
             var stayedTime = checkOutTime.Subtract(checkInTime).TotalHours;
             totalDay += (int)stayedTime / 24;
             var totalHours = (int)stayedTime % 24;

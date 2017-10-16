@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="WpfApp1.Controls.HomeControls.MainWindowControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WpfApp1.Controls.HomeControls"
+             xmlns:models="clr-namespace:WpfApp1.Model"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <ScrollViewer>
+        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel MinWidth="212">
+                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}"
+                                    DockPanel.Dock="Top"
+                                    HorizontalAlignment="Right" Margin="16"
+                                    IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
+                    <ListBox x:Name="MenuListBox" Margin="0 16 0 16" SelectedIndex="0"
+                             ItemsSource="{Binding Menu}"
+                             PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="models:MenuItem">
+                                <TextBlock Text="{Binding Name}" Margin="32 0 32 0" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            <DockPanel>
+                <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                            Mode="PrimaryMid" DockPanel.Dock="Top">
+                    <DockPanel>
+                        <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
+                                        x:Name="MenuToggleButton" />
+                        <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                            <StackPanel>
+                                <Button Content="Hello World" />
+                                <Button Content="Nice Popup" />
+                                <Button Content="Can't Touch This" IsEnabled="False" />
+                                <Separator />
+                                <Button Content="Goodbye" />
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                               FontSize="22" Text="Hoang Long Hotel Manager" Style="{StaticResource MaterialDesignTitleTextBlock}" />
+                    </DockPanel>
+                </materialDesign:ColorZone>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <ScrollViewer Grid.Row="1"
+                                  HorizontalScrollBarVisibility="{Binding ElementName=MenuListBox, Path=SelectedItem.HorizontalScrollBarVisibilityRequirement}"
+                                  VerticalScrollBarVisibility="{Binding ElementName=MenuListBox, Path=SelectedItem.VerticalScrollBarVisibilityRequirement}"
+                                  Padding="{Binding ElementName=MenuListBox, Path=SelectedItem.MarginRequirement}">
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">
+                            <TextBlock Style="{StaticResource MaterialDesignDisplay4TextBlock}" FontSize="50" FontWeight="SemiBold">
+                                Hoang Long Hotel
+                            </TextBlock>
+                            <LineBreak />
+                            <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" FontSize="20">
+                                40 Hau Giang Street, Ward 4, Tan Binh District, Ho Chi Minh City, Viet Nam
+                            </TextBlock>
+                        </TextBlock>
+                            <ContentControl Content="{Binding ElementName=MenuListBox, Path=SelectedItem.Content}" x:Name="ContentControl" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </DockPanel>
+        </materialDesign:DrawerHost>
+    </ScrollViewer>
+</UserControl>

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\App.xaml
-8-390475489
+10-1993063622
 
-352007503006
+41-1546532839
 271649336497
-Controls\CustomerControls\CustomerControl.xaml;Controls\CustomerControls\CustomerInfoControl.xaml;Controls\HomeControls\ChangeRoomControl.xaml;Controls\HomeControls\IndexControl.xaml;Controls\HomeControls\RoomControl.xaml;Controls\OrderControls\OrderControl.xaml;Controls\ServiceControls\ServiceControl.xaml;MainWindow.xaml;
+Controls\CustomerControls\CustomerControl.xaml;Controls\CustomerControls\CustomerInfoControl.xaml;Controls\HomeControls\ChangeRoomControl.xaml;Controls\HomeControls\IndexControl.xaml;Controls\HomeControls\MainWindowControl.xaml;Controls\HomeControls\RoomControl.xaml;Controls\OrderControls\OrderControl.xaml;Controls\ReportControls\ReportIndexControl.xaml;Controls\ServiceControls\ServiceControl.xaml;MainWindow.xaml;
 
 False
 
