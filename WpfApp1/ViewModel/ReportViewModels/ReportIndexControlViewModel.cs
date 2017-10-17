@@ -49,6 +49,7 @@ namespace WpfApp1.ViewModel.ReportViewModels
             FromDate = new DateTime(FromDate.Year, FromDate.Month, FromDate.Day, 0, 0, 0);
             ToDate = new DateTime(ToDate.Year, ToDate.Month, ToDate.Day, 23, 59, 59);
             var orders = _orderRepo.GetAll().Where(x => x.CheckOutTime <= ToDate && x.CheckOutTime >= FromDate);
+            if (!orders.Any()) return;
             foreach (var order in orders)
             {
                 var room = _roomRepo.GetById(order.RoomId);
@@ -72,7 +73,7 @@ namespace WpfApp1.ViewModel.ReportViewModels
                 Total = total,
                 Discount = discount,
                 Adjustment = adjustment,
-                Room = new Room() { Name = "TOTAL" }
+                Room = new Room() { Name = "Tổng Thu" }
             });
         }
 

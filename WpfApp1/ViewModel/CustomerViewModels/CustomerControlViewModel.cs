@@ -57,6 +57,8 @@ namespace WpfApp1.ViewModel.CustomerViewModels
             set => this.RaiseAndSetIfChanged(ref _checkOutTime, value);
         }
 
+        public ReactiveList<string> Provinces;
+        public ReactiveList<string> Nations;
         public ReactiveCommand<Unit, Task<bool>> AcceptCommand { get; protected set; }
         public ReactiveCommand<Unit, Unit> SearchCustomerCommand { get; protected set; }
 
@@ -75,6 +77,8 @@ namespace WpfApp1.ViewModel.CustomerViewModels
             Customers = _customerRepo.GetAll().ToList();
             AcceptCommand = ReactiveCommand.Create(Accept);
             SearchCustomerCommand = ReactiveCommand.Create(SearchCustomer);
+            Provinces = new ReactiveList<string>(Utility.GetProvinces());
+            Nations = new ReactiveList<string>(Utility.GetNations());
             this.WhenAnyValue(x => x.CheckInTime)
                 .Select(x =>
                 {

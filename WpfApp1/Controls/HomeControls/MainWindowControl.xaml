@@ -50,7 +50,7 @@
                             </StackPanel>
                         </materialDesign:PopupBox>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                               FontSize="22" Text="Hoang Long Hotel Manager" Style="{StaticResource MaterialDesignTitleTextBlock}" />
+                               FontSize="22" Text="Quản Lý Khách Sạn Hoàng Long" Style="{StaticResource MaterialDesignTitleTextBlock}" />
                     </DockPanel>
                 </materialDesign:ColorZone>
                 <Grid>
@@ -65,11 +65,11 @@
                         <StackPanel>
                             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">
                             <TextBlock Style="{StaticResource MaterialDesignDisplay4TextBlock}" FontSize="50" FontWeight="SemiBold">
-                                Hoang Long Hotel
+                                Khách Sạn Hoàng Long
                             </TextBlock>
                             <LineBreak />
                             <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" FontSize="20">
-                                40 Hau Giang Street, Ward 4, Tan Binh District, Ho Chi Minh City, Viet Nam
+                                40 Hậu Giang, Phường 4, Quận Tân Bình, TP. Hồ Chí Minh, Việt Nam
                             </TextBlock>
                         </TextBlock>
                             <ContentControl Content="{Binding ElementName=MenuListBox, Path=SelectedItem.Content}" x:Name="ContentControl" />

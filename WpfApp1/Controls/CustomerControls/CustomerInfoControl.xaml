@@ -37,7 +37,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="3*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Right" />
+                    <Label Grid.Column="0" Content="Tên:" HorizontalAlignment="Right" />
                     <Label Grid.Column="1" Content="{Binding Name}"></Label>
                 </Grid>
                 <Grid>
@@ -45,7 +45,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="3*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Content="ID Number:" HorizontalAlignment="Right" />
+                    <Label Grid.Column="0" Content="Số CMND:" HorizontalAlignment="Right" />
                     <Label Grid.Column="1" Content="{Binding IdentityDisplay}"></Label>
                 </Grid>
                 <Grid>
@@ -53,7 +53,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Content="Birth Date:" HorizontalAlignment="Right" />
+                    <Label Grid.Column="0" Content="Ngày Sinh:" HorizontalAlignment="Right" />
                     <Label Grid.Column="1" Content="{Binding BirthDateDisplay}"></Label>
                 </Grid>
                 <Grid>
@@ -61,7 +61,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Content="Birth Place:" HorizontalAlignment="Right" />
+                    <Label Grid.Column="0" Content="Nơi Sinh:" HorizontalAlignment="Right" />
                     <Label Grid.Column="1" Content="{Binding BirthPlace}"></Label>
                 </Grid>
                 <Grid>
@@ -69,12 +69,12 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="3*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Content="Address:" HorizontalAlignment="Right" />
+                    <Label Grid.Column="0" Content="Địa Chỉ:" HorizontalAlignment="Right" />
                     <Label Grid.Column="1" Content="{Binding AddressDisplay}"></Label>
                 </Grid>
             </StackPanel>
             <Separator Grid.Row="2" Style="{StaticResource MaterialDesignDarkSeparator}" Margin="8 0 8 0" />
-            <TextBlock Grid.Row="3" Margin="8 4 8 4" Style="{StaticResource MaterialDesignBody2TextBlock}">Checking Info</TextBlock>
+            <TextBlock Grid.Row="3" Margin="8 4 8 4" Style="{StaticResource MaterialDesignBody2TextBlock}">Thông Tin Nhận Phòng/ Trả Phòng</TextBlock>
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -82,7 +82,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <materialDesign:PackIcon Grid.Column="1" Kind="Clock" VerticalAlignment="Center" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="0" Text="Check In At:" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="0" Text="Nhận Phòng Lúc:" VerticalAlignment="Center" HorizontalAlignment="Right" />
                 <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding CheckInDateDisplay}" />
             </Grid>
             <Grid Grid.Row="5">
@@ -91,18 +91,18 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <materialDesign:PackIcon Grid.Column="1" Kind="Clock" VerticalAlignment="Center" HorizontalAlignment="Right" />
-                <TextBlock Grid.Column="0" Text="Check Out At:" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="0" Text="Trả Phòng Lúc:" VerticalAlignment="Center" HorizontalAlignment="Right" />
                 <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding CheckOutDateDisplay}" />
             </Grid>
         </Grid>
         <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
                     Margin="10"
-                    Content="Print"
+                    Content="In"
                     Click="Print_Click" />
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
                     Margin="10"
-                    Content="Close"
+                    Content="Đóng"
                     Click="ButtonBase_OnClick" />
         </StackPanel>
     </Grid>

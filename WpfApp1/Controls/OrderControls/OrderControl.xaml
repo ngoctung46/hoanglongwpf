@@ -16,7 +16,14 @@
              FontFamily="{DynamicResource MaterialDesignFont}">
     <StackPanel Margin="10">
         <StackPanel x:Name="PrintStackPanel">
-            <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}"  HorizontalAlignment="Center">Receipt</TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}"  HorizontalAlignment="Center">
+                Hóa Đơn
+            </TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}" TextAlignment="Center">
+                <TextBlock>Khách Sạn Hoàng Long</TextBlock>
+                <LineBreak />
+                <TextBlock>40 Hậu Giang, Phường 4, Quận Tân Bình, Tp. Hồ Chí Minh</TextBlock>
+            </TextBlock>
             <ListView ItemsSource="{Binding Orderlines}" HorizontalAlignment="Center">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -25,22 +32,22 @@
                 </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding ServiceName}" Header="Name" />
-                        <GridViewColumn Header="Quantity">
+                        <GridViewColumn DisplayMemberBinding="{Binding ServiceName}" Header="Tên" />
+                        <GridViewColumn Header="Số Lượng">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Quantity, StringFormat='N0'}" TextAlignment="Right" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Price">
+                        <GridViewColumn Header="Giá">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Price, StringFormat='N0'}" TextAlignment="Right" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Total">
+                        <GridViewColumn Header="Tổng Cộng">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Total, StringFormat='N0'}" TextAlignment="Right" Foreground="Red" FontWeight="Bold" />
@@ -50,13 +57,17 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <TextBox x:Name="DiscountTextBox" materialDesign:HintAssist.Hint="Discount"
+            <TextBox x:Name="DiscountTextBox" materialDesign:HintAssist.Hint="Giảm Giá"
+                 Margin="30"
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  Text="{Binding Discount, StringFormat=N0}" TextAlignment="Right" />
-            <TextBox x:Name="AdjustmentTextBox" materialDesign:HintAssist.Hint="Adjustment"
+            <TextBox x:Name="AdjustmentTextBox" materialDesign:HintAssist.Hint="Phụ Thu"
+                 Margin="30"
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  Text="{Binding Adjustment, StringFormat=N0 }" TextAlignment="Right" />
-            <TextBox x:Name="TotalTextBox" materialDesign:HintAssist.Hint="Total"
+            <TextBox x:Name="TotalTextBox" materialDesign:HintAssist.Hint="Tổng Cộng"
+                 IsEnabled="False"
+                 Margin="30"
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  Text="{Binding Total, Mode=OneWay, StringFormat=N0}" Foreground="Black" FontWeight="SemiBold" TextAlignment="Right" />
         </StackPanel>

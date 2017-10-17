@@ -18,18 +18,18 @@
         <StackPanel Orientation="Horizontal">
             <DatePicker Width="Auto" HorizontalAlignment="Left" Margin="0 0 16 0"
                         VerticalAlignment="Center"
-                        materialDesign:HintAssist.Hint="From Date"
+                        materialDesign:HintAssist.Hint="Từ Ngày"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                         SelectedDate="{Binding Path=FromDate}" />
             <DatePicker Width="Auto" HorizontalAlignment="Left" Margin="0 0 16 0"
-                        materialDesign:HintAssist.Hint="To Date"
+                        materialDesign:HintAssist.Hint="Đến Ngày"
                         VerticalAlignment="Center"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                         SelectedDate="{Binding Path=ToDate}" />
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
                     Margin="10"
                     HorizontalAlignment="Center"
-                    Content="View"
+                    Content="Xem"
                     Command="{Binding ViewCommand}" />
         </StackPanel>
         <ListView x:Name="ReportListView" HorizontalAlignment="Center">
@@ -42,8 +42,8 @@
             </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Room.Name}" Header="Room" />
-                    <GridViewColumn Header="Services" Width="300">
+                    <GridViewColumn DisplayMemberBinding="{Binding Room.Name}" Header="Phòng" />
+                    <GridViewColumn Header="Dịch Vụ" Width="300">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <DataGrid x:Name="ServiceDataGrid" ItemsSource="{Binding OrderLines}" GridLinesVisibility="None"
@@ -64,21 +64,21 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Discount">
+                    <GridViewColumn Header="Giảm Giá">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Discount, StringFormat='N0'}" TextAlignment="Center" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Adjustment">
+                    <GridViewColumn Header="Phụ Thu">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Adjustment, StringFormat='N0'}" TextAlignment="Center" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Total">
+                    <GridViewColumn Header="Tổng Cộng">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Total, StringFormat=N0}" TextAlignment="Right" FontWeight="Bold" Foreground="OrangeRed" />

@@ -43,13 +43,9 @@
                     </Binding>
                 </DatePicker.SelectedDate>
             </DatePicker>
-            <ComboBox materialDesign:HintAssist.Hint="Place of Issue"
+            <ComboBox x:Name="IssuePlaceComboBox" materialDesign:HintAssist.Hint="Place of Issue"
                                   IsEditable="True"
                                   Text="{Binding Path=Customer.IssuePlace}">
-                <ComboBoxItem>Ho Chi Minh City</ComboBoxItem>
-                <ComboBoxItem>Ha Noi City</ComboBoxItem>
-                <ComboBoxItem>Hue City</ComboBoxItem>
-                <ComboBoxItem>Da Nang City</ComboBoxItem>
             </ComboBox>
         </StackPanel>
         <TextBox Margin="0 16 0 0" HorizontalAlignment="Stretch"
@@ -69,12 +65,9 @@
                                     SelectedDate="{Binding Path=Customer.BirthDate}" />
             <ComboBox   materialDesign:HintAssist.Hint="Place of Birth"
                                     IsEditable="True"
+                                    x:Name="BirthPlaceComboBox"
                                     Margin="0 0 16 0"
                                     Text="{Binding Path=Customer.BirthPlace}">
-                <ComboBoxItem>Ho Chi Minh City</ComboBoxItem>
-                <ComboBoxItem>iOS</ComboBoxItem>
-                <ComboBoxItem>Linux</ComboBoxItem>
-                <ComboBoxItem>Windows</ComboBoxItem>
             </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 16 0 0" x:Name="AddressInfoStackPanel">
@@ -88,21 +81,15 @@
             </TextBox>
             <ComboBox materialDesign:HintAssist.Hint="City"
                                   IsEditable="True"
+                                  x:Name="CitiesComboBox"
                                   Margin="0 16 8 0"
                                   Text="{Binding Path=Customer.City}">
-                <ComboBoxItem>Ho Chi Minh City</ComboBoxItem>
-                <ComboBoxItem>Ha Noi City</ComboBoxItem>
-                <ComboBoxItem>Hue City</ComboBoxItem>
-                <ComboBoxItem>Da Nang City</ComboBoxItem>
             </ComboBox>
             <ComboBox materialDesign:HintAssist.Hint="Country"
+                                  x:Name="CountriesComboBox"
                                   IsEditable="True"
                                   Margin="0 16 8 0"
                                   Text="{Binding Path=Customer.Country}">
-                <ComboBoxItem>Viet Nam</ComboBoxItem>
-                <ComboBoxItem>Korea</ComboBoxItem>
-                <ComboBoxItem>Singapore</ComboBoxItem>
-                <ComboBoxItem>India</ComboBoxItem>
             </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 16 0 0">

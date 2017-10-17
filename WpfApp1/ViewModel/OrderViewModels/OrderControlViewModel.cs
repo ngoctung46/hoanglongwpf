@@ -94,7 +94,7 @@ namespace WpfApp1.ViewModel.OrderViewModels
             Subtotal = Orderlines.Sum(x => x.Total);
             var orderQuantity = Orderlines.Sum(x => x.Quantity);
 
-            Orderlines.Add(new Orderline() { ServiceName = "SubTotal", Total = Subtotal, Quantity = orderQuantity });
+            Orderlines.Add(new Orderline() { ServiceName = "Tổng", Total = Subtotal, Quantity = orderQuantity });
         }
 
         private void Close()

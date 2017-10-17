@@ -54,17 +54,17 @@ namespace WpfApp1.Model
 
         [JsonIgnore]
         public string AddressDisplay
-            => $"Line 1 : {AddressLine1}{Environment.NewLine}" +
-               $"Line 2 :{AddressLine2}{Environment.NewLine}" +
-               $"City 2 :{City}{Environment.NewLine}" +
-               $"Country:{Country}";
+            => $"{AddressLine1}{Environment.NewLine}" +
+               $"{AddressLine2}{Environment.NewLine}" +
+               $"{City}{Environment.NewLine}" +
+               $"{Country}";
 
         [JsonIgnore]
         public string IdentityDisplay
             => $"{Identity}{Environment.NewLine}" +
-               $"Issue Date : {IssueDate:dd/MM/yyyy}{Environment.NewLine}" +
-               $"Expiry Date: {ExpiryDate:dd/MM/yyyy}{Environment.NewLine}" +
-               $"Issue Place: {IssuePlace}";
+               $"Ngày Cấp : {IssueDate:dd/MM/yyyy}{Environment.NewLine}" +
+               $"Ngày Hết Hạn: {ExpiryDate:dd/MM/yyyy}{Environment.NewLine}" +
+               $"Nơi Cấp: {IssuePlace}";
 
         [JsonIgnore]
         public string CheckInDateDisplay => $"{CheckInDate:dd/MM/yyyy HH:mm:ss}";

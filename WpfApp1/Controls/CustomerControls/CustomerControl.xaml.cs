@@ -17,6 +17,7 @@ using WpfApp1.Controls.HomeControls;
 using WpfApp1.ViewModel.CustomerViewModels;
 using WpfApp1.ViewModel.HomeViewModels;
 using MaterialDesignThemes.Wpf;
+using WpfApp1.Helper;
 using WpfApp1.Model;
 
 namespace WpfApp1.Controls.CustomerControls
@@ -33,6 +34,12 @@ namespace WpfApp1.Controls.CustomerControls
             ViewModel = new CustomerControlViewModel(roomControlViewModel);
             DataContext = ViewModel;
             IdComboBox.ItemsSource = ViewModel.Customers.Select(x => x.Identity).ToList();
+            var provinces = Utility.GetProvinces();
+            var countries = Utility.GetNations();
+            IssuePlaceComboBox.ItemsSource = provinces;
+            BirthPlaceComboBox.ItemsSource = provinces;
+            CitiesComboBox.ItemsSource = provinces;
+            CountriesComboBox.ItemsSource = countries;
         }
 
         private void BindView(Action<IDisposable> d)
