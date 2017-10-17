@@ -142,6 +142,9 @@
     <Compile Include="Controls\HomeControls\MainWindowControl.xaml.cs">
       <DependentUpon>MainWindowControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LoginControl.xaml.cs">
+      <DependentUpon>LoginControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\OrderControls\OrderControl.xaml.cs">
       <DependentUpon>OrderControl.xaml</DependentUpon>
     </Compile>
@@ -153,6 +156,9 @@
     </Compile>
     <Compile Include="Helper\Utility.cs" />
     <Compile Include="Interfaces\IRepo.cs" />
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Base\ModelBase.cs" />
     <Compile Include="Model\Customer.cs" />
@@ -201,6 +207,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\LoginControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\OrderControls\OrderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ServiceControls\ServiceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

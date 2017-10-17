@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="WpfApp1.Controls.LoginControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WpfApp1.Controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="30"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel Margin="10">
+        <TextBox x:Name="UserNameTextBox"
+                 materialDesign:HintAssist.Hint="User name" />
+        <TextBox x:Name="PasswordTextBox"
+                 FontFamily="ms-appx:///Assets/PassDot.ttf#PassDot"
+                 materialDesign:HintAssist.Hint="Password" />
+        <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+                Margin="10"
+                FontSize="30"
+                Height="50"
+                Content="Log In"
+                Click="LogIn_Click" />
+        <TextBlock x:Name="StatusTextBlock" Text="" />
+    </StackPanel>
+</UserControl>
