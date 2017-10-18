@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        Title="LoginWindow" Height="200" Width="300">
+        Title="LoginWindow" Height="300" Width="500">
     <Grid>
-        <controls:LoginControl />
+        <controls:LoginControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
     </Grid>
 </Window>

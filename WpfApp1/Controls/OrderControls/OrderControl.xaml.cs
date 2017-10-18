@@ -43,6 +43,12 @@ namespace WpfApp1.Controls.OrderControls
             {
                 if (Owner is RoomControl roomControl)
                     roomControl.ViewModel.CheckOutCommand.Execute().Subscribe();
+                if (Window.GetWindow(this) is MainWindow mainWindow)
+                {
+                    var control = mainWindow.MainWindowControl.ContentControl.Content;
+                    if (control is IndexControl indexControl)
+                        indexControl.ViewModel.AvailableCount++;
+                }
                 DialogHost.IsOpen = false;
             }));
         }

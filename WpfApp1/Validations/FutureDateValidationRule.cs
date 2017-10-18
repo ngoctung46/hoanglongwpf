@@ -16,10 +16,10 @@ namespace WpfApp1.Validations
             if (!DateTime.TryParse((value ?? "").ToString(),
                 CultureInfo.CurrentCulture,
                 DateTimeStyles.AssumeLocal | DateTimeStyles.AllowWhiteSpaces,
-                out time)) return new ValidationResult(false, "Invalid date");
+                out time)) return new ValidationResult(false, "Sai Ngày");
 
             return time.Date <= DateTime.Now.Date
-                ? new ValidationResult(false, "Future date required")
+                ? new ValidationResult(false, "Yêu Cầu Ngày Trong Tương Lai")
                 : ValidationResult.ValidResult;
         }
     }

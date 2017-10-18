@@ -15,17 +15,20 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Margin="10">
+        <TextBlock Text="Đăng Nhập" TextAlignment="Center" Margin="10" Foreground="OrangeRed" />
         <TextBox x:Name="UserNameTextBox"
-                 materialDesign:HintAssist.Hint="User name" />
-        <TextBox x:Name="PasswordTextBox"
-                 FontFamily="ms-appx:///Assets/PassDot.ttf#PassDot"
-                 materialDesign:HintAssist.Hint="Password" />
+                 materialDesign:HintAssist.Hint="ID"
+                 Margin="10" />
+        <TextBox x:Name="PasswordTextBox" Margin="10"
+                 materialDesign:HintAssist.Hint="Mật Khẩu" />
+        <TextBlock x:Name="StatusTextBlock" Text="" FontSize="20" Foreground="OrangeRed" />
         <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
-                Margin="10"
+                Margin="5,5,5,5"
+                IsDefault="True"
                 FontSize="30"
                 Height="50"
-                Content="Log In"
+                Foreground="White"
+                Content="OK"
                 Click="LogIn_Click" />
-        <TextBlock x:Name="StatusTextBlock" Text="" />
     </StackPanel>
 </UserControl>

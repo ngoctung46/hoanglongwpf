@@ -52,6 +52,12 @@ namespace WpfApp1.Controls.CustomerControls
             d(this.OneWayBind(ViewModel, vm => vm.IsNewCustomer, v => v.AddressInfoStackPanel.IsEnabled));
             d(ViewModel.AcceptCommand.Subscribe(_ =>
             {
+                if (Window.GetWindow(this) is MainWindow mainWindow)
+                {
+                    var control = mainWindow.MainWindowControl.ContentControl.Content;
+                    if (control is IndexControl indexControl)
+                        indexControl.ViewModel.AvailableCount--;
+                }
                 DialogHost.IsOpen = false;
             }));
             d(ViewModel.SearchCustomerCommand.Subscribe(_ => IdComboBox.IsEnabled = false));

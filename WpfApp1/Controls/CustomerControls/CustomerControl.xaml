@@ -20,21 +20,21 @@
         <TextBlock>Check In</TextBlock>
         <ComboBox
             x:Name="IdComboBox"
-            materialDesign:HintAssist.Hint="Identification No."
+            materialDesign:HintAssist.Hint="Số CMND/Hộ Chiếu"
             IsEditable="True"
             Margin="0 0 16 0"
             Text="{Binding Path=Identity}" />
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 16 0 0" x:Name="IdentityInfoStackPanel">
             <DatePicker Width="Auto" HorizontalAlignment="Left" Margin="0 0 16 0"
-                                    materialDesign:HintAssist.Hint="Issue Date"
+                                    materialDesign:HintAssist.Hint="Ngày Cấp"
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                                     SelectedDate="{Binding Path=Customer.IssueDate}" />
 
             <DatePicker Width="Auto" Margin="0 0 16 0"
                                     HorizontalAlignment="Left"
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                                    materialDesign:HintAssist.Hint="Expiry Date">
+                                    materialDesign:HintAssist.Hint="Ngày Hết Hạn">
                 <DatePicker.SelectedDate>
                     <Binding Path="Customer.ExpiryDate">
                         <Binding.ValidationRules>
@@ -43,13 +43,13 @@
                     </Binding>
                 </DatePicker.SelectedDate>
             </DatePicker>
-            <ComboBox x:Name="IssuePlaceComboBox" materialDesign:HintAssist.Hint="Place of Issue"
+            <ComboBox x:Name="IssuePlaceComboBox" materialDesign:HintAssist.Hint="Nơi Cấp"
                                   IsEditable="True"
                                   Text="{Binding Path=Customer.IssuePlace}">
             </ComboBox>
         </StackPanel>
         <TextBox Margin="0 16 0 0" HorizontalAlignment="Stretch"
-                             x:Name="CustomerNameTextBox" materialDesign:HintAssist.Hint="Customer's Name">
+                             x:Name="CustomerNameTextBox" materialDesign:HintAssist.Hint="Họ Và Tên">
             <TextBox.Text>
                 <Binding Path="Customer.Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -60,10 +60,10 @@
         </TextBox>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 16 0 0" x:Name="BirthInfoStackPanel">
             <DatePicker Width="100" HorizontalAlignment="Left"
-                                    Margin="0 0 16 0" materialDesign:HintAssist.Hint="Date of Birth"
+                                    Margin="0 0 16 0" materialDesign:HintAssist.Hint="Ngày Sinh"
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                                     SelectedDate="{Binding Path=Customer.BirthDate}" />
-            <ComboBox   materialDesign:HintAssist.Hint="Place of Birth"
+            <ComboBox   materialDesign:HintAssist.Hint="Nơi Sinh"
                                     IsEditable="True"
                                     x:Name="BirthPlaceComboBox"
                                     Margin="0 0 16 0"
@@ -72,20 +72,20 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 16 0 0" x:Name="AddressInfoStackPanel">
             <TextBox Margin="0 16 8 0" HorizontalAlignment="Stretch"
-                                 x:Name="AddressLine1TextBox" materialDesign:HintAssist.Hint="Address Line 1"
+                                 x:Name="AddressLine1TextBox" materialDesign:HintAssist.Hint="Địa Chỉ Dòng 1"
                                  Text="{Binding Path=Customer.AddressLine1}">
             </TextBox>
             <TextBox Margin="0 16 8 0" HorizontalAlignment="Stretch"
-                                 x:Name="AddressLine2TextBox" materialDesign:HintAssist.Hint="Address Line 2"
+                                 x:Name="AddressLine2TextBox" materialDesign:HintAssist.Hint="Địa Chỉ Dòng 2"
                                  Text="{Binding Path=Customer.AddressLine2}">
             </TextBox>
-            <ComboBox materialDesign:HintAssist.Hint="City"
+            <ComboBox materialDesign:HintAssist.Hint="Thường Trú Tại"
                                   IsEditable="True"
                                   x:Name="CitiesComboBox"
                                   Margin="0 16 8 0"
                                   Text="{Binding Path=Customer.City}">
             </ComboBox>
-            <ComboBox materialDesign:HintAssist.Hint="Country"
+            <ComboBox materialDesign:HintAssist.Hint="Quốc Tịch"
                                   x:Name="CountriesComboBox"
                                   IsEditable="True"
                                   Margin="0 16 8 0"
@@ -94,14 +94,14 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 16 0 0">
             <DatePicker Width="Auto" HorizontalAlignment="Left" Margin="0 0 16 0"
-                        materialDesign:HintAssist.Hint="Check In Date"
+                        materialDesign:HintAssist.Hint="Thời Gian Nhận Phòng"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                         SelectedDate="{Binding Path=Customer.CheckInDate, StringFormat='dd/MM/yyyy'}" />
             <materialDesign:TimePicker Is24Hours="True" Margin="0" SelectedTime="{Binding Path=CheckInTime}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 16 0 0">
             <DatePicker Width="Auto" HorizontalAlignment="Left" Margin="0 0 16 0"
-                        materialDesign:HintAssist.Hint="Check Out Date"
+                        materialDesign:HintAssist.Hint="Thời Gian Trả Phòng"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                         SelectedDate="{Binding Path=Customer.CheckOutDate, StringFormat='dd/MM/yyyy'}" />
             <materialDesign:TimePicker Is24Hours="True" Margin="0" SelectedTime="{Binding Path=CheckOutTime}" />
@@ -112,7 +112,7 @@
                     IsDefault="True"
                     Margin="0 8 8 0"
                     Command="{Binding AcceptCommand}"
-                    Content="ACCEPT" />
+                    Content="Nhận Khách" />
 
             <Button Style="{StaticResource MaterialDesignFlatButton}"
                     IsCancel="True"
@@ -121,7 +121,7 @@
                 <Button.CommandParameter>
                     <system:Boolean>False</system:Boolean>
                 </Button.CommandParameter>
-                CANCEL
+                Hủy
             </Button>
         </StackPanel>
     </StackPanel>

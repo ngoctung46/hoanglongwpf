@@ -13,11 +13,12 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         WindowStyle="None"
+        WindowState="Maximized"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="MainWindow" Height="768" Width="1024">
     <Grid>
         <!--<controls:IndexControl x:Name="IndexControl"></controls:IndexControl>-->
-        <controls:MainWindowControl></controls:MainWindowControl>
+        <controls:MainWindowControl x:Name="MainWindowControl"></controls:MainWindowControl>
     </Grid>
 </Window>

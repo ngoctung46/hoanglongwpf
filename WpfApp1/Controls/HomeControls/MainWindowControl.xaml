@@ -50,7 +50,14 @@
                             </StackPanel>
                         </materialDesign:PopupBox>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                               FontSize="22" Text="Quản Lý Khách Sạn Hoàng Long" Style="{StaticResource MaterialDesignTitleTextBlock}" />
+                                   FontSize="22" TextAlignment="Center"
+                                   Style="{StaticResource MaterialDesignTitleTextBlock}">
+                            <TextBlock Text="Khách Sạn Hoàng Long" Foreground="Black" />
+                            <LineBreak></LineBreak>
+                            <TextBlock Text="40 Hậu Giang, P.4, Q. Tân Bình, Tp. Hồ Chí Minh"
+                                       FontSize="16"
+                                       Foreground="White" />
+                        </TextBlock>
                     </DockPanel>
                 </materialDesign:ColorZone>
                 <Grid>
@@ -63,15 +70,6 @@
                                   VerticalScrollBarVisibility="{Binding ElementName=MenuListBox, Path=SelectedItem.VerticalScrollBarVisibilityRequirement}"
                                   Padding="{Binding ElementName=MenuListBox, Path=SelectedItem.MarginRequirement}">
                         <StackPanel>
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">
-                            <TextBlock Style="{StaticResource MaterialDesignDisplay4TextBlock}" FontSize="50" FontWeight="SemiBold">
-                                Khách Sạn Hoàng Long
-                            </TextBlock>
-                            <LineBreak />
-                            <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" FontSize="20">
-                                40 Hậu Giang, Phường 4, Quận Tân Bình, TP. Hồ Chí Minh, Việt Nam
-                            </TextBlock>
-                        </TextBlock>
                             <ContentControl Content="{Binding ElementName=MenuListBox, Path=SelectedItem.Content}" x:Name="ContentControl" />
                         </StackPanel>
                     </ScrollViewer>

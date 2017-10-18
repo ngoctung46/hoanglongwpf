@@ -4,8 +4,45 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WpfApp1.Controls.HomeControls"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
              mc:Ignorable="d"
              Margin="10"
              d:DesignHeight="768" d:DesignWidth="1024" SizeChanged="UserControl_SizeChanged">
-    <WrapPanel x:Name="RootWrapPanel"  FlowDirection="LeftToRight" ItemHeight="Auto" Height="Auto" />
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       TextAlignment="Center"
+                       FontSize="20"
+                       Padding="20"
+                       Text="Phòng Trống" />
+            <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}"
+                       FontSize="20"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       TextAlignment="Center"
+                       Text="Phòng Có Khách" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       FontSize="50"
+                       Foreground="LimeGreen"
+                       Text="{Binding AvailableCount}"
+                       Margin="0,0,0,0"
+                       TextAlignment="Center" />
+            <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}"
+                       FontSize="50" TextAlignment="Center"
+                       Foreground="Red"
+                       Margin="120,0,0,0"
+                       Text="{Binding OccupiedCount}"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </StackPanel>
+        <WrapPanel x:Name="RootWrapPanel"  FlowDirection="LeftToRight" ItemHeight="Auto" Height="Auto" />
+    </StackPanel>
 </UserControl>

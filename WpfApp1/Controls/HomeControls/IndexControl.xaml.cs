@@ -17,6 +17,7 @@ namespace WpfApp1.Controls.HomeControls
         {
             InitializeComponent();
             ViewModel = new IndexControlViewModel();
+            DataContext = ViewModel;
             this.WhenActivated(BindView);
             // Create name scope
             NameScope.SetNameScope(RootWrapPanel, new NameScope());

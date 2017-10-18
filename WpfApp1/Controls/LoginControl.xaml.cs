@@ -27,15 +27,15 @@ namespace WpfApp1.Controls
 
         private void LogIn_Click(object sender, RoutedEventArgs e)
         {
-            if (UserNameTextBox.Text != "hoanglong" && PasswordTextBox.Text != "kshoanglong")
-            {
-                StatusTextBlock.Text = "Invalid Username or Password. Please try again!";
-            }
-            else
+            if (UserNameTextBox.Text == "hoanglong" && PasswordTextBox.Text == "kshoanglong")
             {
                 new MainWindow().Show();
                 var parent = Window.GetWindow(this) as LoginWindow;
                 parent?.Close();
+            }
+            else
+            {
+                StatusTextBlock.Text = "  Sai tên đăng nhập hoặc mật khẩu. Vui lòng thử lại";
             }
         }
     }

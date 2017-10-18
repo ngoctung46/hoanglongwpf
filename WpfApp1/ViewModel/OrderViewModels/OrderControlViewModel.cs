@@ -21,6 +21,14 @@ namespace WpfApp1.ViewModel.OrderViewModels
         private readonly ObservableAsPropertyHelper<double> _total;
         public double Total => _total.Value;
 
+        private DateTime _checkInTime;
+
+        public DateTime CheckInTime
+        {
+            get => _checkInTime;
+            set => this.RaiseAndSetIfChanged(ref _checkInTime, value);
+        }
+
         private double _discount;
 
         public double Discount
@@ -66,7 +74,8 @@ namespace WpfApp1.ViewModel.OrderViewModels
 
         private void GetOrderInfo()
         {
-            var checkInTime = _orderRepo.FindOneById(_room.OrderId).CheckInTime.ToLocalTime();
+            var checkInTime = _orderRepo.FindOneById(_room.OrderId).CheckInTime;
+            CheckInTime = checkInTime;
             var fee = CalculateFee(checkInTime);
             if (_room == null) return;
             var orderlines = _orderlineRepo.FindByOrderId(_room?.OrderId);
@@ -135,16 +144,16 @@ namespace WpfApp1.ViewModel.OrderViewModels
 
         private double CalculateDailyFee(DateTime checkInTime)
         {
-            var totalDay = 1;
+            var totalDay = 0;
             checkInTime = checkInTime.Hour <= 7 ?
                 new DateTime(checkInTime.Year, checkInTime.Month, checkInTime.Day - 1, 12, 0, 0) :
                 new DateTime(checkInTime.Year, checkInTime.Month, checkInTime.Day, 12, 0, 0);
             var checkOutTime = DateTime.Now;
             var stayedTime = checkOutTime.Subtract(checkInTime).TotalHours;
+            if (stayedTime <= 24) totalDay++;
             totalDay += (int)stayedTime / 24;
             var totalHours = (int)stayedTime % 24;
-            if (totalDay <= 1) return _room.Rate;
-            if (totalHours > 4.2) return (totalDay + 1) * _room.Rate;
+            if (totalHours > 4.2) return ++totalDay * _room.Rate;
             return totalDay * _room.Rate + CalculateHourlyFee(totalHours);
         }
     }

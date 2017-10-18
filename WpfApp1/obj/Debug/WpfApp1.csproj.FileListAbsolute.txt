@@ -178,3 +178,7 @@ C:\Users\Tung\Documents\hoanglongvn\WpfApp1\obj\Debug\Controls\LoginControl.g.cs
 C:\Users\Tung\Documents\hoanglongvn\WpfApp1\obj\Debug\LoginWindow.g.cs
 C:\Users\Tung\Documents\hoanglongvn\WpfApp1\obj\Debug\Controls\LoginControl.baml
 C:\Users\Tung\Documents\hoanglongvn\WpfApp1\obj\Debug\LoginWindow.baml
+C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\Controls\LoginControl.g.cs
+C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\LoginWindow.g.cs
+C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\Controls\LoginControl.baml
+C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\LoginWindow.baml

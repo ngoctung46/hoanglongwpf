@@ -74,7 +74,6 @@
                 </Grid>
             </StackPanel>
             <Separator Grid.Row="2" Style="{StaticResource MaterialDesignDarkSeparator}" Margin="8 0 8 0" />
-            <TextBlock Grid.Row="3" Margin="8 4 8 4" Style="{StaticResource MaterialDesignBody2TextBlock}">Thông Tin Nhận Phòng/ Trả Phòng</TextBlock>
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
