@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using ReactiveUI;
+using WpfApp1.Controls.ExpenseControls;
 using WpfApp1.Controls.HomeControls;
 using WpfApp1.Controls.ReportControls;
 using WpfApp1.Model;
@@ -20,10 +21,10 @@ namespace WpfApp1.ViewModel.HomeViewModels
         {
             Menu = new ReactiveList<MenuItem>
             {
-                new MenuItem() {Name = "Home", Content = new IndexControl()},
-                new MenuItem() {Name = "Bookings"},
-                new MenuItem() {Name = "Reports", Content = new ReportIndexControl(), MarginRequirement = new Thickness(16)},
-                new MenuItem() {Name = "Settings"}
+                new MenuItem() {Name = "Trang Chủ", Content = new IndexControl()},
+                new MenuItem() {Name = "Quản Lý Đặt Phòng"},
+                new MenuItem() {Name = "Xem Báo Cáo", Content = new ReportIndexControl(), MarginRequirement = new Thickness(16)},
+                new MenuItem() {Name = "Quản Lý Thu Chi", Content = new ExpenseIndexControl(), MarginRequirement = new Thickness(16)}
             };
         }
     }

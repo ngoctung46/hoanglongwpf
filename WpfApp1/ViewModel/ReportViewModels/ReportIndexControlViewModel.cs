@@ -15,6 +15,7 @@ namespace WpfApp1.ViewModel.ReportViewModels
         private readonly OrderRepo _orderRepo;
         private readonly RoomRepo _roomRepo;
         private readonly ServiceRepo _serviceRepo;
+        private readonly ExpenseRepo _expenseRepo;
         private DateTime _fromDate = DateTime.Now;
 
         public DateTime FromDate
@@ -39,6 +40,7 @@ namespace WpfApp1.ViewModel.ReportViewModels
             _orderRepo = new OrderRepo();
             _roomRepo = new RoomRepo();
             _serviceRepo = new ServiceRepo();
+            _expenseRepo = new ExpenseRepo();
             Orders = new ReactiveList<Order>();
             ViewCommand = ReactiveCommand.Create(GetReports);
         }
@@ -48,7 +50,7 @@ namespace WpfApp1.ViewModel.ReportViewModels
             Orders.Clear();
             FromDate = new DateTime(FromDate.Year, FromDate.Month, FromDate.Day, 0, 0, 0);
             ToDate = new DateTime(ToDate.Year, ToDate.Month, ToDate.Day, 23, 59, 59);
-            var orders = _orderRepo.GetAll().Where(x => x.CheckOutTime <= ToDate && x.CheckOutTime >= FromDate);
+            var orders = _orderRepo.GetAll().Where(x => x.CheckOutTime.ToLocalTime() <= ToDate && x.CheckOutTime.ToLocalTime() >= FromDate);
             if (!orders.Any()) return;
             foreach (var order in orders)
             {
@@ -73,7 +75,22 @@ namespace WpfApp1.ViewModel.ReportViewModels
                 Total = total,
                 Discount = discount,
                 Adjustment = adjustment,
-                Room = new Room() { Name = "Tổng Thu" }
+                Room = new Room() { Name = "Tổng Tiền Phòng" }
+            });
+            // Add Total Expense Row
+            var totalExpense = _expenseRepo.GetAll().Sum(x => x.Amount);
+            Orders.Add(new Order()
+            {
+                Total = totalExpense,
+                Room = new Room() { Name = "Tổng Thu Chi" }
+            });
+
+            // Add last row
+            var actualBalance = total + totalExpense;
+            Orders.Add(new Order()
+            {
+                Total = actualBalance,
+                Room = new Room() { Name = "Tiền Mặt Hiện Có" }
             });
         }
 

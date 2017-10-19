@@ -182,3 +182,5 @@ C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\Controls\LoginControl.g.c
 C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\LoginWindow.g.cs
 C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\Controls\LoginControl.baml
 C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\LoginWindow.baml
+C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\Controls\ExpenseControls\ExpenseIndexControl.g.cs
+C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\Controls\ExpenseControls\ExpenseIndexControl.baml

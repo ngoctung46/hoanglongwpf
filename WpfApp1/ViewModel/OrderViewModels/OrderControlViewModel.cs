@@ -74,7 +74,7 @@ namespace WpfApp1.ViewModel.OrderViewModels
 
         private void GetOrderInfo()
         {
-            var checkInTime = _orderRepo.FindOneById(_room.OrderId).CheckInTime;
+            var checkInTime = _orderRepo.FindOneById(_room.OrderId).CheckInTime.ToLocalTime();
             CheckInTime = checkInTime;
             var fee = CalculateFee(checkInTime);
             if (_room == null) return;

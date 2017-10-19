@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ReactiveUI;
 using WpfApp1.ViewModel.HomeViewModels;
+using System.Windows.Threading;
 
 namespace WpfApp1.Controls.HomeControls
 {
@@ -28,6 +29,11 @@ namespace WpfApp1.Controls.HomeControls
             InitializeComponent();
             ViewModel = new MainWindowControlViewModel();
             DataContext = ViewModel;
+            DispatcherTimer timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+            {
+                ClockTextBlock.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            }, Dispatcher);
+            timer.Start();
         }
 
         private void UIElement_OnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)

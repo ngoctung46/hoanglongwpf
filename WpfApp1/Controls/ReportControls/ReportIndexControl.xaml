@@ -43,7 +43,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Room.Name}" Header="Phòng" />
-                    <GridViewColumn Header="Dịch Vụ" Width="300">
+                    <GridViewColumn Header="Dịch Vụ" Width="500">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <DataGrid x:Name="ServiceDataGrid" ItemsSource="{Binding OrderLines}" GridLinesVisibility="None"
@@ -52,7 +52,7 @@
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Binding="{Binding Service.Name}" Width="2*"></DataGridTextColumn>
                                         <DataGridTextColumn Binding="{Binding Quantity, StringFormat=N0}" Width="50"></DataGridTextColumn>
-                                        <DataGridTextColumn Binding="{Binding Total, StringFormat=N0}" Width="*">
+                                        <DataGridTextColumn Binding="{Binding Total, StringFormat=N0}" Width="100">
                                             <DataGridTextColumn.ElementStyle>
                                                 <Style TargetType="{x:Type TextBlock}">
                                                     <Setter Property="HorizontalAlignment" Value="Right" />

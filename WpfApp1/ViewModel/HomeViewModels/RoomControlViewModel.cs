@@ -107,7 +107,10 @@ namespace WpfApp1.ViewModel.HomeViewModels
 
         private Customer ShowCustomerInfo()
         {
-            return Customer ?? _customerRepo.FindById(Room.CustomerId);
+            var customer = _customerRepo.FindById(Room.CustomerId);
+            customer.CheckInDate = customer.CheckInDate.ToLocalTime();
+            if (customer.CheckOutDate != null) customer.CheckOutDate = customer.CheckOutDate.Value.ToLocalTime();
+            return customer;
         }
 
         private void AddService()

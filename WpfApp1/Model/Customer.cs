@@ -44,7 +44,7 @@ namespace WpfApp1.Model
         public string Country { get; set; }
 
         [JsonProperty("checkInDate")]
-        public DateTime CheckInDate { get; set; } = DateTime.Now;
+        public DateTime CheckInDate { get; set; } = DateTime.UtcNow;
 
         [JsonProperty("checkOutDate")]
         public DateTime? CheckOutDate { get; set; }

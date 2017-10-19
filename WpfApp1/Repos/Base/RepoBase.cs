@@ -24,9 +24,11 @@ namespace WpfApp1.Repos.Base
             _httpClient = CreateHttpClient();
         }
 
-        public Task<bool> DeleteAsync(string id)
+        public async Task<bool> DeleteAsync(string id)
         {
-            throw new NotImplementedException();
+            var api = $"{_api}/{id}";
+            await _httpClient.DeleteAsync(api);
+            return true;
         }
 
         public async Task<IEnumerable<T>> GetAsync()

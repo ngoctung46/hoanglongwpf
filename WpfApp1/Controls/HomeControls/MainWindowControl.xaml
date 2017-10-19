@@ -64,6 +64,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="50" />
                     </Grid.RowDefinitions>
                     <ScrollViewer Grid.Row="1"
                                   HorizontalScrollBarVisibility="{Binding ElementName=MenuListBox, Path=SelectedItem.HorizontalScrollBarVisibilityRequirement}"
@@ -73,6 +74,14 @@
                             <ContentControl Content="{Binding ElementName=MenuListBox, Path=SelectedItem.Content}" x:Name="ContentControl" />
                         </StackPanel>
                     </ScrollViewer>
+                    <materialDesign:ColorZone Grid.Row="2"
+                                              materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                              Mode="PrimaryMid" Height="50"
+                                              Foreground="Yellow"
+                                              VerticalContentAlignment="Center"
+                                              VerticalAlignment="Center">
+                        <TextBlock x:Name="ClockTextBlock" Text="" HorizontalAlignment="Right" FontSize="20" Margin="0,0,10,0" />
+                    </materialDesign:ColorZone>
                 </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>

@@ -136,6 +136,9 @@
     <Compile Include="Controls\CustomerControls\CustomerInfoControl.xaml.cs">
       <DependentUpon>CustomerInfoControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ExpenseControls\ExpenseIndexControl.xaml.cs">
+      <DependentUpon>ExpenseIndexControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\HomeControls\ChangeRoomControl.xaml.cs">
       <DependentUpon>ChangeRoomControl.xaml</DependentUpon>
     </Compile>
@@ -162,12 +165,14 @@
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Base\ModelBase.cs" />
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\Expense.cs" />
     <Compile Include="Model\MenuItem.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Orderline.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Repos\Base\RepoBase.cs" />
     <Compile Include="Repos\CustomerRepo.cs" />
+    <Compile Include="Repos\ExpenseRepo.cs" />
     <Compile Include="Repos\OrderlineRepo.cs" />
     <Compile Include="Repos\OrderRepo.cs" />
     <Compile Include="Repos\RoomRepo.cs" />
@@ -175,11 +180,11 @@
     <Compile Include="Validations\FutureDateValidationRule.cs" />
     <Compile Include="Validations\NotEmptyValidationRule.cs" />
     <Compile Include="ViewModel\CustomerViewModels\CustomerControlViewModel.cs" />
+    <Compile Include="ViewModel\ExpenseViewModels\ExpenseIndexControlViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModels\ChangeRoomControlViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModels\IndexControlViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModels\MainWindowControlViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModels\RoomControlViewModel.cs" />
-    <Compile Include="ViewModel\MainWindowControlViewModel.cs" />
     <Compile Include="ViewModel\OrderViewModels\OrderControlViewModel.cs" />
     <Compile Include="ViewModel\ReportViewModels\ReportIndexControlViewModel.cs" />
     <Compile Include="ViewModel\ServiceControlViewModels\ServiceControlViewModel.cs" />
@@ -188,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\CustomerControls\CustomerInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ExpenseControls\ExpenseIndexControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
