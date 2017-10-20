@@ -61,14 +61,14 @@ namespace WpfApp1.ViewModel.ServiceControlViewModels
             AddCommand = ReactiveCommand.CreateFromTask(AddAsync);
             _orderId = orderId;
             CloseCommand = ReactiveCommand.Create(Close);
-            Service = Services[0];
+            if (Services.Count > 0) Service = Services[0] ?? new Service();
             _total = this.WhenAnyValue(x => x.Price, y => y.Quantity, (x, y) => x * y).ToProperty(this, x => x.Total);
             this.WhenAnyValue(x => x.Service).Where(x => x != null).Select(x => x.CurrentPrice).BindTo(this, x => x.Price);
         }
 
         private void GetServices()
         {
-            var services = _serviceRepo.GetAll();
+            var services = _serviceRepo.GetAll().Where(x => !x.IsRoomRate);
             Services = new ReactiveList<Service>(services);
         }
 

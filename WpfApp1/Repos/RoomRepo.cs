@@ -16,18 +16,27 @@ namespace WpfApp1.Repos
 
         public RoomRepo()
         {
+            _rooms = new List<Room>();
             Task.Run(async () =>
             {
                 var rooms = await All();
-                _rooms = rooms.ToList();
+                _rooms = rooms;
             }).Wait();
         }
 
-        public async Task<IEnumerable<Room>> All()
+        public async Task<List<Room>> All()
         {
             var rooms = await GetAsync();
+            if (!rooms.Any())
+            {
+                foreach (var room in SeedData.RoomSeedData)
+                {
+                    room.Id = await PostAsync(room);
+                    _rooms.Add(room);
+                }
+            }
             rooms = rooms.OrderBy(x => x.Name);
-            return rooms;
+            return rooms.ToList();
         }
 
         public async Task<bool> Update(Room room)

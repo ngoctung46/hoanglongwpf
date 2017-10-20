@@ -14,6 +14,7 @@ namespace WpfApp1.Repos
 
         public ServiceRepo()
         {
+            _services = new List<Service>();
             Task.Run(async () =>
             {
                 var services = await All();
@@ -24,6 +25,14 @@ namespace WpfApp1.Repos
         public async Task<IEnumerable<Service>> All()
         {
             var services = await GetAsync();
+            if (!services.Any())
+            {
+                foreach (var service in SeedData.ServiceSeedData)
+                {
+                    service.Id = await PostAsync(service);
+                    _services.Add(service);
+                }
+            }
             return services;
         }
 

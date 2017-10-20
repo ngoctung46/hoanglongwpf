@@ -52,30 +52,35 @@
                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="8">
                             <Button Style="{StaticResource MaterialDesignToolButton}"
                                     Width="30" Padding="2 0 2 0"
+                                    ToolTip="Dọn Phòng"
                                     Command="{Binding CleaningCommand}"
                                     materialDesign:RippleAssist.IsCentered="True">
                                 <materialDesign:PackIcon Kind="Broom" />
                             </Button>
                             <Button Style="{StaticResource MaterialDesignToolButton}"
                                     Width="30" Padding="2 0 2 0"
+                                    ToolTip="Chuyển Phòng"
                                     Command="{Binding ChangeRoomCommand}"
                                     materialDesign:RippleAssist.IsCentered="True">
                                 <materialDesign:PackIcon Kind="Autorenew" />
                             </Button>
                             <Button Style="{StaticResource MaterialDesignToolButton}"
                                     Width="30" Padding="2 0 2 0"
+                                    ToolTip="Thêm Dịch Vụ"
                                     Command="{Binding AddServiceCommand}"
                                     materialDesign:RippleAssist.IsCentered="True">
                                 <materialDesign:PackIcon Kind="Basket" />
                             </Button>
                             <Button Style="{StaticResource MaterialDesignToolButton}"
                                     Width="30" Padding="2 0 2 0"
+                                    ToolTip="Xem Thông Tin Khách Hàng"
                                     Command="{Binding ShowCustomerInfoCommand}"
                                     materialDesign:RippleAssist.IsCentered="True">
                                 <materialDesign:PackIcon Kind="Account" />
                             </Button>
                             <Button Style="{StaticResource MaterialDesignToolButton}"
                                     Width="30" Padding="2 0 2 0"
+                                    ToolTip="Trả Phòng"
                                     Command="{Binding ViewReceiptCommand}"
                                     materialDesign:RippleAssist.IsCentered="True">
                                 <materialDesign:PackIcon Kind="Cash" />

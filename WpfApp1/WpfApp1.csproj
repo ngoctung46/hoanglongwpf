@@ -169,6 +169,7 @@
     <Compile Include="Model\MenuItem.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Orderline.cs" />
+    <Compile Include="Model\SeedData.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Repos\Base\RepoBase.cs" />
     <Compile Include="Repos\CustomerRepo.cs" />
