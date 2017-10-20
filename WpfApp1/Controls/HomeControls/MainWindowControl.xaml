@@ -77,10 +77,10 @@
                     <materialDesign:ColorZone Grid.Row="2"
                                               materialDesign:ShadowAssist.ShadowDepth="Depth2"
                                               Mode="PrimaryMid" Height="50"
-                                              Foreground="Yellow"
+                                              Foreground="White"
                                               VerticalContentAlignment="Center"
                                               VerticalAlignment="Center">
-                        <TextBlock x:Name="ClockTextBlock" Text="" HorizontalAlignment="Right" FontSize="20" Margin="0,0,10,0" />
+                        <TextBlock x:Name="ClockTextBlock" Text="" HorizontalAlignment="Right" FontSize="20" Margin="0,0,10,0" FontWeight="Bold" />
                     </materialDesign:ColorZone>
                 </Grid>
             </DockPanel>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 using ReactiveUI;
 using WpfApp1.ViewModel.ReportViewModels;
 
@@ -32,6 +33,20 @@ namespace WpfApp1.Controls.ReportControls
                 d(this.OneWayBind(ViewModel, vm => vm.Orders, v => v.ReportListView.ItemsSource));
                 d(this.OneWayBind(ViewModel, vm => vm.Orders.Count, vm => vm.ReportListView.Visibility,
                     count => count > 0 ? Visibility.Visible : Visibility.Collapsed));
+                d(ViewModel.FilePath.RegisterHandler(interaction =>
+                {
+                    SaveFileDialog dialog = new SaveFileDialog
+                    {
+                        Filter = "Excel files(.xlsx)| *.xlsx",
+                        DefaultExt = ".xlsx",
+                        Title = "Thư Mục Tới"
+                    };
+                    var result = dialog.ShowDialog();
+                    if (result == true && dialog.FileName != "null")
+                    {
+                        interaction.SetOutput(dialog.FileName);
+                    }
+                }));
             });
         }
 

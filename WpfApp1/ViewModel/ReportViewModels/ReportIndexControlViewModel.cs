@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
+using WpfApp1.Helper;
 using WpfApp1.Model;
 using WpfApp1.Repos;
 
@@ -16,7 +18,10 @@ namespace WpfApp1.ViewModel.ReportViewModels
         private readonly RoomRepo _roomRepo;
         private readonly ServiceRepo _serviceRepo;
         private readonly ExpenseRepo _expenseRepo;
+        private readonly Interaction<Unit, string> filePath;
         private DateTime _fromDate = DateTime.Now;
+
+        public Interaction<Unit, string> FilePath => filePath;
 
         public DateTime FromDate
         {
@@ -34,6 +39,7 @@ namespace WpfApp1.ViewModel.ReportViewModels
 
         public ReactiveList<Order> Orders { get; set; }
         public ReactiveCommand<Unit, Unit> ViewCommand { get; protected set; }
+        public ReactiveCommand<Unit, Unit> ExportCommand { get; protected set; }
 
         public ReportIndexControlViewModel()
         {
@@ -41,8 +47,10 @@ namespace WpfApp1.ViewModel.ReportViewModels
             _roomRepo = new RoomRepo();
             _serviceRepo = new ServiceRepo();
             _expenseRepo = new ExpenseRepo();
+            filePath = new Interaction<Unit, string>();
             Orders = new ReactiveList<Order>();
             ViewCommand = ReactiveCommand.Create(GetReports);
+            ExportCommand = ReactiveCommand.Create(Export);
         }
 
         private void GetReports()
@@ -108,6 +116,12 @@ namespace WpfApp1.ViewModel.ReportViewModels
         private Service GetService(string serviceId)
         {
             return _serviceRepo.FindById(serviceId);
+        }
+
+        private async void Export()
+        {
+            var filePath = await this.filePath.Handle(Unit.Default);
+            Utility.ExportReport(filePath, Orders.ToList(), FromDate, ToDate);
         }
     }
 }

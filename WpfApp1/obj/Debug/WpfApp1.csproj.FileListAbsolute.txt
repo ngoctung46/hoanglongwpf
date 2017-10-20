@@ -184,3 +184,14 @@ C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\Controls\LoginControl.bam
 C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\LoginWindow.baml
 C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\Controls\ExpenseControls\ExpenseIndexControl.g.cs
 C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\Controls\ExpenseControls\ExpenseIndexControl.baml
+C:\Users\Tung\Documents\hoanglongvn\WpfApp1\obj\Debug\Controls\ExpenseControls\ExpenseIndexControl.g.cs
+C:\Users\Tung\Documents\hoanglongvn\WpfApp1\obj\Debug\Controls\ExpenseControls\ExpenseIndexControl.baml
+C:\Users\Tung\Documents\hoanglongvn\WpfApp1\bin\Debug\ClosedXML.dll
+C:\Users\Tung\Documents\hoanglongvn\WpfApp1\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\Tung\Documents\hoanglongvn\WpfApp1\bin\Debug\FastMember.Signed.dll
+C:\Users\Tung\Documents\hoanglongvn\WpfApp1\bin\Debug\System.IO.FileSystem.Primitives.dll
+C:\Users\Tung\Documents\hoanglongvn\WpfApp1\bin\Debug\System.IO.Packaging.dll
+C:\Users\Tung\Documents\hoanglongvn\WpfApp1\bin\Debug\ClosedXML.xml
+C:\Users\Tung\Documents\hoanglongvn\WpfApp1\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\Tung\Documents\hoanglongvn\WpfApp1\obj\Debug\Controls\BookingControls\BookingIndexControl.g.cs
+C:\Users\Tung\Documents\hoanglongvn\WpfApp1\obj\Debug\Controls\BookingControls\BookingIndexControl.baml

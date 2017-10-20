@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using ClosedXML.Excel;
 using WpfApp1.Model;
 using WpfApp1.Model.Base;
 
@@ -31,6 +33,66 @@ namespace WpfApp1.Helper
             {
                 if (list[i].Id == item.Id) list[i] = item;
             }
+        }
+
+        public static void ExportReport(string filePath, List<Order> data, DateTime fromDate, DateTime toDate)
+        {
+            if (data == null) return;
+            var reportName = "Báo Cáo Tiền Phòng";
+            fromDate = new DateTime(fromDate.Year, fromDate.Month, fromDate.Day, 0, 0, 0);
+            toDate = new DateTime(toDate.Year, toDate.Month, toDate.Day, 23, 59, 59);
+            var columnsName = new[] { "Phòng", "Dịch Vụ", "Giảm Giá", "Phụ Thu", "Tổng Cộng" };
+            DataTable dataTable = new DataTable { TableName = reportName };
+            foreach (var columnName in columnsName)
+            {
+                dataTable.Columns.Add(columnName);
+            }
+            var selectedPeriod = $"Từ {fromDate:dd/MM/yyyy} Tới {toDate:dd/MM/yyyy}";
+            int rowForColumnName = CreateReportHeader(dataTable, reportName, selectedPeriod);
+            dataTable.Rows.Add(selectedPeriod);
+            dataTable.Rows.Add(columnsName);
+            foreach (var item in data)
+            {
+                var list = new List<string>();
+                foreach (var ol in item.OrderLines)
+                {
+                    list.Add($"{ol.ServiceName} x {ol.Quantity:N} = {ol.Total:N}");
+                }
+                var services = String.Join(Environment.NewLine, list);
+                dataTable.Rows.Add(item.Room.Name, services, item.Discount, item.Adjustment, item.Total);
+            }
+            ExportToExcel(filePath, reportName, dataTable, rowForColumnName);
+        }
+
+        private static void ExportToExcel(string filePath, string reportName, DataTable table, int rowForColumnName)
+        {
+            // Creating a new workbook
+            var wb = new XLWorkbook();
+            //Adding a worksheet
+            var ws = wb.Worksheets.Add(reportName);
+            // Insert data
+            ws.FirstRow().FirstCell().InsertData(table.Rows);
+            // merge row for full text
+            var endRowInfoNumber = rowForColumnName - 1;
+            var rangeInfo = ws.Range(1, 1, endRowInfoNumber, table.Columns.Count);
+            for (int i = 1; i <= endRowInfoNumber; i++)
+            {
+                rangeInfo.Row(i).Merge();
+            }
+            // Format column name
+            var range = ws.Range(rowForColumnName, 1, rowForColumnName, table.Columns.Count);
+            range.Style.Fill.BackgroundColor = XLColor.PaleAqua;
+            ws.Columns().AdjustToContents();
+            wb.SaveAs(filePath);
+        }
+
+        private static int CreateReportHeader(DataTable table, string reportName, string periodSelected)
+        {
+            table.Rows.Add(reportName);
+            table.Rows.Add(periodSelected);
+            table.Rows.Add("");
+            table.Rows.Add("");
+            return table.Rows.Count + 1;
         }
 
         public static void Refresh(this UIElement uiElement)

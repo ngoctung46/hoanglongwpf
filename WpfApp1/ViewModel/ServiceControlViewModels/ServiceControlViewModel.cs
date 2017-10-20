@@ -19,7 +19,7 @@ namespace WpfApp1.ViewModel.ServiceControlViewModels
         private readonly ServiceRepo _serviceRepo;
         private double _price, _quantity = 1;
         private readonly ObservableAsPropertyHelper<double> _total;
-        private Service _service = new Service();
+        private Service _service;
         private readonly string _orderId;
 
         public ReactiveCommand<Unit, Unit> AddCommand { get; protected set; }
@@ -61,7 +61,7 @@ namespace WpfApp1.ViewModel.ServiceControlViewModels
             AddCommand = ReactiveCommand.CreateFromTask(AddAsync);
             _orderId = orderId;
             CloseCommand = ReactiveCommand.Create(Close);
-            if (Services.Count > 0) Service = Services[0] ?? new Service();
+            if (Services.Count > 0) Service = Services[0];
             _total = this.WhenAnyValue(x => x.Price, y => y.Quantity, (x, y) => x * y).ToProperty(this, x => x.Total);
             this.WhenAnyValue(x => x.Service).Where(x => x != null).Select(x => x.CurrentPrice).BindTo(this, x => x.Price);
         }

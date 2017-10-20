@@ -4,17 +4,17 @@
   <description asmv2:publisher="WpfApp1" asmv2:product="WpfApp1" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.6.1" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="WpfApp1.exe.manifest" size="13034">
+    <dependentAssembly dependencyType="install" codebase="WpfApp1.exe.manifest" size="16494">
       <assemblyIdentity name="WpfApp1.exe" version="1.0.0.9" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>AhZ17y5RFDYiXh20BFuTH9WktwQOIvlqPExlBRPdMd0=</dsig:DigestValue>
+        <dsig:DigestValue>r6b9uXDO5whoO+KSPp9T2Ijz71a4C1TVzKxHJFboHoc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

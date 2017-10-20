@@ -30,7 +30,15 @@
                     Margin="10"
                     HorizontalAlignment="Center"
                     Content="Xem"
+                    Foreground="White"
                     Command="{Binding ViewCommand}" />
+            <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Margin="10"
+                    HorizontalAlignment="Center"
+                    Content="Xuất Ra Excel"
+                    Background="DarkBlue"
+                    Foreground="White"
+                    Command="{Binding ExportCommand}" />
         </StackPanel>
         <ListView x:Name="ReportListView" HorizontalAlignment="Center">
             <ListView.ItemContainerStyle>

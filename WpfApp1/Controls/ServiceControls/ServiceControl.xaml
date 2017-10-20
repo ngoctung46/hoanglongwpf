@@ -23,11 +23,11 @@
             Text="{Binding ServiceName}"
             SelectedValue="{Binding Service}"
             DisplayMemberPath="Name" />
-        <TextBox HorizontalAlignment="Stretch"
+        <TextBox HorizontalAlignment="Stretch" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  x:Name="PriceTextBox" materialDesign:HintAssist.Hint="Giá" Text="{Binding Price, StringFormat='N0'}" />
-        <TextBox HorizontalAlignment="Stretch"
+        <TextBox HorizontalAlignment="Stretch" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  x:Name="QuantityTextBox" materialDesign:HintAssist.Hint="Số Lượng" Text="{Binding Quantity, StringFormat='N0'}" />
-        <TextBox HorizontalAlignment="Stretch"
+        <TextBox HorizontalAlignment="Stretch" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  x:Name="TotalTextBox" materialDesign:HintAssist.Hint="Tổng Cộng" Text="{Binding Total, StringFormat='N0', Mode=OneWay}" />
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
