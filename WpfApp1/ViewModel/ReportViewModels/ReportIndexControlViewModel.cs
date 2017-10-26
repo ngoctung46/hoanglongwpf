@@ -20,6 +20,7 @@ namespace WpfApp1.ViewModel.ReportViewModels
         private readonly ExpenseRepo _expenseRepo;
         private readonly Interaction<Unit, string> filePath;
         private DateTime _fromDate = DateTime.Now;
+        private ViewType _viewType = ViewType.Day;
 
         public Interaction<Unit, string> FilePath => filePath;
 
@@ -27,6 +28,12 @@ namespace WpfApp1.ViewModel.ReportViewModels
         {
             get => _fromDate;
             set => this.RaiseAndSetIfChanged(ref _fromDate, value);
+        }
+
+        public ViewType ViewType
+        {
+            get => _viewType;
+            set => this.RaiseAndSetIfChanged(ref _viewType, value);
         }
 
         private DateTime _toDate = DateTime.Now;
@@ -59,7 +66,31 @@ namespace WpfApp1.ViewModel.ReportViewModels
             FromDate = new DateTime(FromDate.Year, FromDate.Month, FromDate.Day, 0, 0, 0);
             ToDate = new DateTime(ToDate.Year, ToDate.Month, ToDate.Day, 23, 59, 59);
             var orders = _orderRepo.GetAll().Where(x => x.CheckOutTime.ToLocalTime() <= ToDate && x.CheckOutTime.ToLocalTime() >= FromDate);
+
+            //group by month
+            if (ViewType == ViewType.Month)
+            {
+                orders = orders.GroupBy(x => new { x.Room.Name, x.CheckOutTime.Month }).Select(x => new Order
+                {
+                    Room = x.First().Room,
+                    Discount = x.Sum(y => y.Discount),
+                    Adjustment = x.Sum(z => z.Adjustment),
+                    Total = x.Sum(t => t.Total)
+                });
+            }
+
+            if (ViewType == ViewType.Year)
+            {
+                orders = orders.GroupBy(x => x.CheckOutTime.Year).Select(x => new Order
+                {
+                    Room = x.First().Room,
+                    Discount = x.Sum(y => y.Discount),
+                    Adjustment = x.Sum(z => z.Adjustment),
+                    Total = x.Sum(t => t.Total)
+                });
+            }
             if (!orders.Any()) return;
+
             foreach (var order in orders)
             {
                 var room = _roomRepo.GetById(order.RoomId);

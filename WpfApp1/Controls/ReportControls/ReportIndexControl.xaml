@@ -26,18 +26,23 @@
                         VerticalAlignment="Center"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                         SelectedDate="{Binding Path=ToDate}" />
+            <ComboBox   materialDesign:HintAssist.Hint="Lọc Theo"
+                        Margin="0 0 16 0"
+                        SelectedIndex="{Binding ViewType}">
+                <ComboBoxItem>Ngày</ComboBoxItem>
+                <ComboBoxItem>Tháng</ComboBoxItem>
+                <ComboBoxItem>Năm</ComboBoxItem>
+            </ComboBox>
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
                     Margin="10"
                     HorizontalAlignment="Center"
                     Content="Xem"
-                    Foreground="White"
                     Command="{Binding ViewCommand}" />
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
                     Margin="10"
+                    Foreground="AliceBlue"
                     HorizontalAlignment="Center"
-                    Content="Xuất Ra Excel"
-                    Background="DarkBlue"
-                    Foreground="White"
+                    Content="Lưu Excel"
                     Command="{Binding ExportCommand}" />
         </StackPanel>
         <ListView x:Name="ReportListView" HorizontalAlignment="Center">

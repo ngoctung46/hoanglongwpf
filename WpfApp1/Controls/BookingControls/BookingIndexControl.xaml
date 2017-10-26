@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WpfApp1.Controls.BookingControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
@@ -13,6 +14,61 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-    </Grid>
+    <StackPanel Margin="20">
+        <TextBlock Style="{StaticResource MaterialDesignDisplay4TextBlock}"
+                   FontSize="30"
+                   FontWeight="DemiBold"
+                   Text="Quản Lý Bookings" TextAlignment="Center"
+                   Foreground="OrangeRed"></TextBlock>
+        <TextBox HorizontalAlignment="Stretch"
+                 Margin="10"
+                 FontSize="25"
+                 Text="{Binding Description}"
+                 x:Name="CustomerNameTextBox" materialDesign:HintAssist.Hint="Tên Khách Hàng" />
+        <TextBox HorizontalAlignment="Stretch"
+                 Margin="10"
+                 FontSize="25"
+                 Text="{Binding Description}"
+                 x:Name="MobileTextBox" materialDesign:HintAssist.Hint="Số Điện Thoại" />
+        <TextBox Margin="10" HorizontalAlignment="Stretch"
+                 Text="{Binding Amount, StringFormat=N0}"
+                 FontSize="25"
+                 x:Name="RoomComboBox" materialDesign:HintAssist.Hint="Phòng Muốn Đặt" />
+        <TextBox Margin="10" HorizontalAlignment="Stretch"
+                 Text="{Binding Amount, StringFormat=N0}"
+                 FontSize="25"
+                 x:Name="NoteTextBox" materialDesign:HintAssist.Hint="Yêu Cầu Khác" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    Margin="10"
+                    IsDefault="True"
+                    Width="150"
+                    FontSize="25"
+                    HorizontalAlignment="Stretch"
+                    Height="50"
+                    Command="{Binding SaveCommand}"
+                    Content="Lưu" />
+        </StackPanel>
+        <ListView x:Name="BookingListView" HorizontalAlignment="Center"
+                  FontSize="25"
+                  ItemsSource="{Binding Expenses, Mode=OneWay}"
+                  Margin="10"
+                  SelectedItem="{Binding Expense}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="BorderBrush" Value="LightGray" />
+                    <Setter Property="BorderThickness" Value="0,0,0,1" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Tên Khách Hàng" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Mobile}" Header="Số Điện Thoại"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding RoomName}" Header="Phòng Muốn Đặt"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Note}" Header="Yêu Cầu"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
 </UserControl>

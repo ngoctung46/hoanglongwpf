@@ -14,7 +14,7 @@ namespace WpfApp1.Model
                 new Room()
                 {
                     Name = "101",
-                    Description = "Double Bed Room",
+                    Description = "Phòng Đôi",
                     Type = Room.RoomType.Double,
                     Status = Room.RoomStatus.Available,
                     Rate = 400_000
@@ -22,7 +22,7 @@ namespace WpfApp1.Model
                 new Room()
                 {
                     Name = "102",
-                    Description = "Single Bed Room",
+                    Description = "Phòng Đơn",
                     Type = Room.RoomType.Single,
                     Status = Room.RoomStatus.Available,
                     Rate = 300_000
@@ -30,7 +30,7 @@ namespace WpfApp1.Model
                 new Room()
                 {
                     Name = "103",
-                    Description = "Single Bed Room",
+                    Description = "Phòng Đơn",
                     Type = Room.RoomType.Single,
                     Status = Room.RoomStatus.Available,
                     Rate = 300_000
@@ -38,7 +38,7 @@ namespace WpfApp1.Model
                 new Room()
                 {
                     Name = "104",
-                    Description = "Single Bed Room",
+                    Description = "Phòng Đơn",
                     Type = Room.RoomType.Single,
                     Status = Room.RoomStatus.Available,
                     Rate = 300_000
@@ -46,7 +46,7 @@ namespace WpfApp1.Model
                 new Room()
                 {
                     Name = "201",
-                    Description = "Double Bed Room",
+                    Description = "Phòng Đôi",
                     Type = Room.RoomType.Double,
                     Status = Room.RoomStatus.Available,
                     Rate = 400_000
@@ -54,7 +54,7 @@ namespace WpfApp1.Model
                 new Room()
                 {
                     Name = "202",
-                    Description = "Single Bed Room",
+                    Description = "Phòng Đơn",
                     Type = Room.RoomType.Single,
                     Status = Room.RoomStatus.Available,
                     Rate = 300_000
@@ -62,7 +62,7 @@ namespace WpfApp1.Model
                 new Room()
                 {
                     Name = "203",
-                    Description = "Single Bed Room",
+                    Description = "Phòng Đơn",
                     Type = Room.RoomType.Single,
                     Status = Room.RoomStatus.Available,
                     Rate = 300_000
@@ -70,7 +70,7 @@ namespace WpfApp1.Model
                 new Room()
                 {
                     Name = "204",
-                    Description = "Single Bed Room",
+                    Description = "Phòng Đơn",
                     Type = Room.RoomType.Single,
                     Status = Room.RoomStatus.Available,
                     Rate = 300_000
@@ -78,7 +78,7 @@ namespace WpfApp1.Model
                 new Room()
                 {
                     Name = "301",
-                    Description = "Double Bed Room",
+                    Description = "Phòng Đôi",
                     Type = Room.RoomType.Double,
                     Status = Room.RoomStatus.Available,
                     Rate = 400_000
@@ -86,7 +86,7 @@ namespace WpfApp1.Model
                 new Room()
                 {
                     Name = "302",
-                    Description = "Single Bed Room",
+                    Description = "Phòng Đơn",
                     Type = Room.RoomType.Single,
                     Status = Room.RoomStatus.Available,
                     Rate = 300_000
@@ -94,7 +94,7 @@ namespace WpfApp1.Model
                 new Room()
                 {
                     Name = "303",
-                    Description = "Single Bed Room",
+                    Description = "Phòng Đơn",
                     Type = Room.RoomType.Single,
                     Status = Room.RoomStatus.Available,
                     Rate = 300_000
@@ -102,7 +102,7 @@ namespace WpfApp1.Model
                 new Room()
                 {
                     Name = "304",
-                    Description = "Single Bed Room",
+                    Description = "Phòng Đơn",
                     Type = Room.RoomType.Single,
                     Status = Room.RoomStatus.Available,
                     Rate = 300_000

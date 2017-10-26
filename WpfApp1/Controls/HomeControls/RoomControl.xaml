@@ -41,7 +41,7 @@
                     </Grid>
                     <StackPanel Grid.Row="1" Margin="8 2 8 2">
                         <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Room.Description}"></TextBlock>
-                        <TextBlock x:Name="StatusTextBlock" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Status}"></TextBlock>
+                        <TextBlock x:Name="StatusTextBlock" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                     </StackPanel>
                     <materialDesign:ColorZone
                         x:Name="OccupiedZone"

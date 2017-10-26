@@ -49,7 +49,6 @@ namespace WpfApp1.Helper
             }
             var selectedPeriod = $"Từ {fromDate:dd/MM/yyyy} Tới {toDate:dd/MM/yyyy}";
             int rowForColumnName = CreateReportHeader(dataTable, reportName, selectedPeriod);
-            dataTable.Rows.Add(selectedPeriod);
             dataTable.Rows.Add(columnsName);
             foreach (var item in data)
             {
@@ -59,7 +58,7 @@ namespace WpfApp1.Helper
                     list.Add($"{ol.ServiceName} x {ol.Quantity:N} = {ol.Total:N}");
                 }
                 var services = String.Join(Environment.NewLine, list);
-                dataTable.Rows.Add(item.Room.Name, services, item.Discount, item.Adjustment, item.Total);
+                dataTable.Rows.Add(item.Room.Name, services, $"{item.Discount:N}", $"{item.Adjustment:N}", $"{item.Total:N}");
             }
             ExportToExcel(filePath, reportName, dataTable, rowForColumnName);
         }
@@ -82,6 +81,8 @@ namespace WpfApp1.Helper
             // Format column name
             var range = ws.Range(rowForColumnName, 1, rowForColumnName, table.Columns.Count);
             range.Style.Fill.BackgroundColor = XLColor.PaleAqua;
+            var endRange = ws.Range(table.Rows.Count - 2, 1, table.Rows.Count, table.Columns.Count);
+            endRange.Style.Fill.BackgroundColor = XLColor.AliceBlue;
             ws.Columns().AdjustToContents();
             wb.SaveAs(filePath);
         }
@@ -90,8 +91,6 @@ namespace WpfApp1.Helper
         {
             table.Rows.Add(reportName);
             table.Rows.Add(periodSelected);
-            table.Rows.Add("");
-            table.Rows.Add("");
             return table.Rows.Count + 1;
         }
 
@@ -154,4 +153,6 @@ namespace WpfApp1.Helper
             };
         }
     }
+
+    public enum ViewType { Day = 0, Month = 1, Year = 2 }
 }

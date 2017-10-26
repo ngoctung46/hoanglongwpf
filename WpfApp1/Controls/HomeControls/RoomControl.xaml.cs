@@ -38,6 +38,8 @@ namespace WpfApp1.Controls.HomeControls
             d(this.OneWayBind(ViewModel, vm => vm.IsOccupied, v => v.AvailableZone.Visibility,
                 isOccupied => isOccupied ? Visibility.Collapsed : Visibility.Visible));
             d(this.OneWayBind(ViewModel, vm => vm.Status, v => v.StatusTextBlock.Foreground, status => status == Room.RoomStatus.Available ? Brushes.Green : Brushes.White));
+            d(this.OneWayBind(ViewModel, vm => vm.Status, v => v.StatusTextBlock.Text,
+                                status => status == Room.RoomStatus.Available ? "Phòng Trống" : "Có Khách"));
             d(this.OneWayBind(ViewModel, vm => vm.IsOccupied, v => v.OccupiedZone.Visibility,
                 isOccupied => isOccupied ? Visibility.Visible : Visibility.Collapsed));
             d(this.OneWayBind(ViewModel, vm => vm.IsOccupied, v => v.RoomCard.Background, isOccupied => isOccupied ? Brushes.OrangeRed : Brushes.White));

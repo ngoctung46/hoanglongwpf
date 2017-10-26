@@ -80,7 +80,7 @@
                                               Foreground="White"
                                               VerticalContentAlignment="Center"
                                               VerticalAlignment="Center">
-                        <TextBlock x:Name="ClockTextBlock" Text="" HorizontalAlignment="Right" FontSize="20" Margin="0,0,10,0" FontWeight="Bold" />
+                        <TextBlock x:Name="ClockTextBlock" Text="" HorizontalAlignment="Right" FontSize="15" Margin="0,0,10,0" FontWeight="Bold" />
                     </materialDesign:ColorZone>
                 </Grid>
             </DockPanel>
