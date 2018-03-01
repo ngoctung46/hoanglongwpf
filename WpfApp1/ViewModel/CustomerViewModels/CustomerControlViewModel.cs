@@ -84,14 +84,14 @@ namespace WpfApp1.ViewModel.CustomerViewModels
                 {
                     if (Customer == null) return DateTime.Now;
                     var checkInDate = Customer.CheckInDate;
-                    return new DateTime(checkInDate.Year, checkInDate.Month, checkInDate.Day, x.Hour, x.Minute, x.Second);
+                    return new DateTime(checkInDate.Year, checkInDate.Month, checkInDate.Day, x.Hour, x.Minute, x.Second).ToUniversalTime();
                 }).BindTo(this, x => x.Customer.CheckInDate);
             this.WhenAnyValue(x => x.CheckOutTime)
                 .Select(x =>
                 {
-                    if (Customer == null || Customer?.CheckOutDate == null) return DateTime.Now;
+                    if (Customer == null || Customer?.CheckOutDate == null) return new DateTime();
                     var checkOutDate = Customer.CheckOutDate.Value;
-                    return new DateTime(checkOutDate.Year, checkOutDate.Month, checkOutDate.Day, x.Value.Hour, x.Value.Minute, x.Value.Second);
+                    return new DateTime(checkOutDate.Year, checkOutDate.Month, checkOutDate.Day, x.Value.Hour, x.Value.Minute, x.Value.Second).ToUniversalTime();
                 }).BindTo(this, x => x.Customer.CheckOutDate);
         }
 
@@ -102,6 +102,7 @@ namespace WpfApp1.ViewModel.CustomerViewModels
 
         private async Task<bool> Accept()
         {
+            if (Customer.CheckOutDate.Equals(new DateTime())) Customer.CheckOutDate = null;
             if (Customer.Id == null) Customer.Id = await _customerRepo.Add(Customer);
             else await _customerRepo.Update(Customer);
             _room.Status = Room.RoomStatus.Occupied;

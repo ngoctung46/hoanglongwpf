@@ -63,13 +63,16 @@
                 </ListView.View>
             </ListView>
             <TextBox x:Name="DiscountTextBox" materialDesign:HintAssist.Hint="Giảm Giá"
+                 Margin="40,0,40,0"
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  Text="{Binding Discount, StringFormat=N0}" TextAlignment="Right" />
             <TextBox x:Name="AdjustmentTextBox" materialDesign:HintAssist.Hint="Phụ Thu"
+                 Margin="40,0,40,0"
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  Text="{Binding Adjustment, StringFormat=N0 }" TextAlignment="Right" />
             <TextBox x:Name="TotalTextBox" materialDesign:HintAssist.Hint="Tổng Cộng"
                  IsEnabled="False"
+                 Margin="40,0,40,0"
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  Text="{Binding Total, Mode=OneWay, StringFormat=N0}" Foreground="Black" FontWeight="SemiBold" TextAlignment="Right" />
         </StackPanel>

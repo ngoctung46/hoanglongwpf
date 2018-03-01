@@ -19,7 +19,7 @@ namespace WpfApp1.Model
         [JsonProperty("birthDate")]
         public DateTime BirthDate { get; set; } = DateTime.Now;
 
-        [JsonProperty("brithPlace")]
+        [JsonProperty("birthPlace")]
         public string BirthPlace { get; set; }
 
         [JsonProperty("issueDate")]

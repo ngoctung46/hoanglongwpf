@@ -152,6 +152,15 @@ namespace WpfApp1.Helper
                 "Thái Lan"
             };
         }
+
+        public static List<String> GetRoomTypes()
+        {
+            return new List<string>()
+            {
+                "Phòng Đơn",
+                "Phòng Đôi"
+            };
+        }
     }
 
     public enum ViewType { Day = 0, Month = 1, Year = 2 }

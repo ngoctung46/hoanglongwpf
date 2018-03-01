@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\obj\Debug\
+C:\Users\Tung\Source\Repos\hoanglongwpf\WpfApp1\obj\Debug\
 WpfApp1
 none
 false
 DEBUG;TRACE
-C:\Users\Tung\Documents\hoanglongwpf\WpfApp1\App.xaml
+C:\Users\Tung\Source\Repos\hoanglongwpf\WpfApp1\App.xaml
 141184626371
 
-52-1956716925
-32-1350780888
+55726956214
+32-491327847
 Controls\BookingControls\BookingIndexControl.xaml;Controls\CustomerControls\CustomerControl.xaml;Controls\CustomerControls\CustomerInfoControl.xaml;Controls\ExpenseControls\ExpenseIndexControl.xaml;Controls\HomeControls\ChangeRoomControl.xaml;Controls\HomeControls\IndexControl.xaml;Controls\HomeControls\MainWindowControl.xaml;Controls\HomeControls\RoomControl.xaml;Controls\LoginControl.xaml;Controls\OrderControls\OrderControl.xaml;Controls\ReportControls\ReportIndexControl.xaml;Controls\ServiceControls\ServiceControl.xaml;LoginWindow.xaml;MainWindow.xaml;
 
 False

@@ -23,19 +23,27 @@
         <TextBox HorizontalAlignment="Stretch"
                  Margin="10"
                  FontSize="25"
-                 Text="{Binding Description}"
+                 Text="{Binding CustomerName}"
                  x:Name="CustomerNameTextBox" materialDesign:HintAssist.Hint="Tên Khách Hàng" />
         <TextBox HorizontalAlignment="Stretch"
                  Margin="10"
                  FontSize="25"
-                 Text="{Binding Description}"
+                 Text="{Binding PhoneNumber}"
                  x:Name="MobileTextBox" materialDesign:HintAssist.Hint="Số Điện Thoại" />
+        <ComboBox   materialDesign:HintAssist.Hint="Loại Phòng"
+                    IsEditable="True"
+                    x:Name="RoomTypeComboBox"
+                    Margin="10"
+                    FontSize="25"
+                    Text="{Binding RoomType}" />
+        <DatePicker Width="Auto" HorizontalAlignment="Stretch" Margin="10"
+                    materialDesign:HintAssist.Hint="Ngày Nhận Phòng"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                    FontSize="25"
+                    SelectedDate="{Binding Path=CheckInDate, StringFormat='dd/MM/yyyy'}" />
+        <materialDesign:TimePicker Is24Hours="True" Margin="10" SelectedTime="{Binding Path=CheckInTime}" FontSize="25" />
         <TextBox Margin="10" HorizontalAlignment="Stretch"
-                 Text="{Binding Amount, StringFormat=N0}"
-                 FontSize="25"
-                 x:Name="RoomComboBox" materialDesign:HintAssist.Hint="Phòng Muốn Đặt" />
-        <TextBox Margin="10" HorizontalAlignment="Stretch"
-                 Text="{Binding Amount, StringFormat=N0}"
+                 Text="{Binding Note}"
                  FontSize="25"
                  x:Name="NoteTextBox" materialDesign:HintAssist.Hint="Yêu Cầu Khác" />
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -50,10 +58,12 @@
                     Content="Lưu" />
         </StackPanel>
         <ListView x:Name="BookingListView" HorizontalAlignment="Center"
+                  KeyDown="BookingListView_KeyDown"
+                  HorizontalContentAlignment="Center"
                   FontSize="25"
-                  ItemsSource="{Binding Expenses, Mode=OneWay}"
+                  ItemsSource="{Binding Bookings, Mode=OneWay}"
                   Margin="10"
-                  SelectedItem="{Binding Expense}">
+                  SelectedItem="{Binding Booking}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -63,10 +73,11 @@
             </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Tên Khách Hàng" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Mobile}" Header="Số Điện Thoại"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding RoomName}" Header="Phòng Muốn Đặt"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Note}" Header="Yêu Cầu"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding CustomerName}" Header="Tên Khách Hàng" />
+                    <GridViewColumn DisplayMemberBinding="{Binding PhoneNumber}" Header="Số Điện Thoại" />
+                    <GridViewColumn DisplayMemberBinding="{Binding RoomType}" Header="Phòng Muốn Đặt" />
+                    <GridViewColumn DisplayMemberBinding="{Binding CheckInDate, StringFormat='dd/MM/yyyy HH:mm'}" Header="Nhận Phòng Lúc" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Note}" Header="Yêu Cầu" />
                 </GridView>
             </ListView.View>
         </ListView>
